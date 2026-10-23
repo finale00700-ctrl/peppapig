@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>佩奇 泥坑 원래 대본</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: blueprint worksheet (Chinese, navy + red) — header with play-all, legend, numbered rows: 뜻 → 성조 한글 발음 → 汉字·병음 → 단어 */
+:root{
+  --bg:#f5f7fb; --paper:#ffffff; --grid:#e0e5ef; --ink:#14243f; --muted:#5d6a82;
+  --navy:#173a6b; --accent:#c8312b; --accent-soft:#fbeceb; --line:#ccd5e3; --now:#fff6dc;
+  --f-ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1729; --paper:#12213a; --grid:#1b2d4b; --ink:#e6edf7; --muted:#9aaccb;
+  --navy:#8fb3ea; --accent:#f0706a; --accent-soft:#33191b; --line:#2a3f62; --now:#2c2a18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1729; --paper:#12213a; --grid:#1b2d4b; --ink:#e6edf7; --muted:#9aaccb;
+  --navy:#8fb3ea; --accent:#f0706a; --accent-soft:#33191b; --line:#2a3f62; --now:#2c2a18; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ko);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;padding:0 16px;padding-block:28px 48px}
+.sheet{max-width:860px;margin:0 auto;background:var(--paper);border:1.5px solid var(--navy);position:relative;padding:28px 28px 20px}
+.sheet::before,.sheet::after{content:"";position:absolute;width:18px;height:18px;border:3px solid var(--accent)}
+.sheet::before{top:-6px;left:-6px;border-right:0;border-bottom:0}
+.sheet::after{bottom:-6px;right:-6px;border-left:0;border-top:0}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:14px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+h1{margin:4px 0 0;font-size:28px;font-weight:900;color:var(--navy);text-wrap:balance}
+h1 .zhT{font-family:var(--f-zh);margin-right:8px}
+.meta{display:grid;gap:6px;justify-items:end;font-size:13px;color:var(--muted)}
+.all{display:flex;gap:6px;flex-wrap:wrap}
+.all button{font-size:13px;font-weight:700;padding:6px 12px}
+.all .go{background:var(--accent);border-color:var(--accent);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;font-size:13px;color:var(--muted)}
+.legend b{font-family:var(--f-mono);color:var(--accent);font-size:16px;margin-right:4px}
+.legend .t b{color:var(--navy)}
+.how{font-size:13px;color:var(--muted);margin:4px 0 8px}
+ol{list-style:none;margin:0;padding:0}
+li{display:grid;grid-template-columns:34px 1fr minmax(120px,170px);gap:4px 14px;padding:14px 8px;border-bottom:1px dashed var(--line);align-items:start;transition:background .2s}
+li.now{background:var(--now)}
+.num{font-family:var(--f-mono);font-weight:700;color:var(--accent);font-size:15px;padding-top:16px}
+.body{min-width:0;display:grid;gap:4px}
+.ko{font-size:14px;color:var(--muted)}
+.ph{font-size:22px;font-weight:700;color:var(--ink);line-height:1.9;word-break:keep-all}
+.ph i{font-style:normal;color:var(--accent);font-family:var(--f-mono);font-weight:700}
+ruby{ruby-position:over}
+rt{font-size:15px;color:var(--navy);font-weight:700;line-height:1}
+.zh{font-family:var(--f-zh);font-size:18px;color:var(--navy);font-weight:500}
+.py{font-family:var(--f-mono);font-size:13px;color:var(--navy);opacity:.85}
+.tts{display:flex;gap:4px;margin-top:4px}
+.voc{border-left:2px solid var(--line);padding-left:10px;display:grid;gap:3px;font-size:13px;align-content:start;min-width:0}
+.voc span{font-family:var(--f-zh);color:var(--accent);font-weight:700;margin-right:4px}
+button{font-family:var(--f-ko);font-size:12px;border:1px solid var(--navy);background:transparent;color:var(--navy);padding:4px 10px;cursor:pointer}
+button:hover{background:var(--navy);color:var(--paper)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.warn{font-size:12px;color:var(--accent);margin:4px 0 0}
+footer{margin-top:14px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+li.sc{display:block;padding:18px 0 6px;border-bottom:2px solid var(--navy)}
+li.sc b{font-size:12px;color:var(--accent);letter-spacing:.08em;margin-right:8px}
+li.sc span{font-size:18px;font-weight:900;color:var(--navy)}
+li.sc span i{font-family:var(--f-zh);font-style:normal;color:var(--accent);font-size:15px;margin-left:8px}
+.chk{justify-self:start;font-size:12px;background:var(--now);color:var(--accent);padding:2px 8px}
+@media (max-width:600px){
+  .sheet{padding:20px 14px}
+  li{grid-template-columns:28px 1fr;padding:12px 4px}
+  .voc{grid-column:2;border-left:0;padding-left:0;display:flex;flex-wrap:wrap;gap:4px 12px}
+  .ph{font-size:20px}
+  .meta{justify-items:start}
+}
+@media (prefers-reduced-motion: reduce){li{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="sheet">
+  <header>
+    <div>
+      <div class="eyebrow">한글로중국어 · 小猪佩奇 第1季 01 · 원래 대본</div>
+      <h1><span class="zhT">泥坑</span>원래 대본</h1>
+    </div>
+    <div class="meta">
+      <span>5장면 · 45문장 · 한 문장 5번 소리 내어 읽기</span>
+      <div class="all">
+        <button type="button" class="go" id="playAll">▶ 전체 듣기</button>
+        <button type="button" id="playAllSlow">▶ 전체 천천히</button>
+        <button type="button" id="stop">■ 멈춤</button>
+      </div>
+    </div>
+  </header>
+  <div class="legend">
+    <span><b>ᵛ</b>zh·ch·sh·r 혀 말기</span>
+    <span><b>ᵒ</b>f 입술 깨물기</span>
+    <span><b>을</b>l 앞에 작게 ‘을’</span>
+    <span class="t"><b>ˉ ˊ ˇ ˋ</b>1·2·3·4성 (표시 없음 = 경성)</span>
+  </div>
+  <p class="how">듣기 버튼으로 소리를 듣고, 성조 표시를 보며 따라 말해요.</p>
+  <p class="warn" id="warn" hidden>이 화면에서는 소리가 나오지 않아요. 크롬이나 삼성 인터넷에서 열어 주세요.</p>
+  <ol id="list"></ol>
+  <footer><span>영상과 함께 보며 따라 말해요</span><span>내 입으로 연습한 소리만 내 귀에 들립니다</span></footer>
+</div>
+
+<script>
+const S = [{"zh": "我是一只佩奇。", "py": "Wǒ shì yì zhī Pèiqí.", "ko": "나는 페파예요.", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>이<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>쯔<rt>ˉ</rt></ruby> <ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby>.", "v": [["我", "나"], ["是", "~이다"], ["一只", "한 마리"]], "num": "01", "chk": "영상 확인: 我是佩奇。일 수 있어요", "scene": "장면 1 · 비 오는 날", "sceneZh": "下雨天"}, {"zh": "这是我的弟弟乔治。", "py": "Zhè shì wǒ de dìdi Qiáozhì.", "ko": "이건 내 남동생 조지예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>띠<rt>ˋ</rt></ruby><ruby>디<rt></rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>.", "v": [["这", "이것"], ["弟弟", "남동생"]], "num": "02", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "这是我的妈妈。", "py": "Zhè shì wǒ de māma.", "ko": "이건 우리 엄마예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby>.", "v": [["妈妈", "엄마"]], "num": "03", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "这也是我的爸爸。", "py": "Zhè yě shì wǒ de bàba.", "ko": "이건 우리 아빠예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby>이에<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>.", "v": [["也", "~도"], ["爸爸", "아빠"]], "num": "04", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "小猪佩奇：泥坑", "py": "Xiǎozhū Pèiqí: Níkēng", "ko": "페파피그: 진흙탕", "ph": "<ruby>씨아오<rt>ˇ</rt></ruby><ruby><i>ᵛ</i>쭈<rt>ˉ</rt></ruby> <ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby>: <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby>", "v": [["小猪", "아기 돼지"], ["泥坑", "진흙탕"]], "num": "★", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "今天下雨了，所以佩奇和乔治不能在外面玩。", "py": "Jīntiān xià yǔ le, suǒyǐ Pèiqí hé Qiáozhì bù néng zài wàimiàn wán.", "ko": "오늘은 비가 와서 페파와 조지는 밖에서 놀 수 없어요.", "ph": "<ruby>찐<rt>ˉ</rt></ruby><ruby>티엔<rt>ˉ</rt></ruby> <ruby>씨아<rt>ˋ</rt></ruby> <ruby>위<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>, <ruby>쑤어<rt>ˇ</rt></ruby><ruby>이<rt>ˇ</rt></ruby> <ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby>뿌<rt>ˋ</rt></ruby> <ruby>넝<rt>ˊ</rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>와이<rt>ˋ</rt></ruby><ruby>미엔<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby>.", "v": [["今天", "오늘"], ["下雨", "비가 오다"], ["所以", "그래서"], ["不能", "~할 수 없다"], ["外面", "바깥"]], "num": "05", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "爸爸，现在雨停了，我们能出去玩吗？", "py": "Bàba, xiànzài yǔ tíng le, wǒmen néng chūqù wán ma?", "ko": "아빠, 이제 비 그쳤는데 나가서 놀아도 돼요?", "ph": "<ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>씨엔<rt>ˋ</rt></ruby><ruby>짜이<rt>ˋ</rt></ruby> <ruby>위<rt>ˇ</rt></ruby> <ruby>팅<rt>ˊ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>넝<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>추<rt>ˉ</rt></ruby><ruby>취<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>마<rt></rt></ruby>?", "v": [["现在", "지금"], ["雨停", "비가 그치다"], ["出去", "나가다"], ["玩", "놀다"]], "num": "06", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "好的，你们两个去玩吧。", "py": "Hǎo de, nǐmen liǎng ge qù wán ba.", "ko": "그래, 둘이 나가서 놀으렴.", "ph": "<ruby>하오<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby>, <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby><i>을</i>리앙<rt>ˇ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>취<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>바<rt></rt></ruby>.", "v": [["你们", "너희"], ["两个", "두 명"], ["去", "가다"], ["吧", "~하렴"]], "num": "07", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇最喜欢在泥坑里玩。", "py": "Pèiqí zuì xǐhuan zài níkēng lǐ wán.", "ko": "페파는 진흙탕에서 노는 걸 제일 좋아해요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>쭈에이<rt>ˋ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby>.", "v": [["最", "가장"], ["喜欢", "좋아하다"], ["在…里", "~안에서"]], "num": "08", "chk": "", "scene": "장면 2 · 장화를 신어야 해", "sceneZh": "穿上靴子"}, {"zh": "我也最喜欢在泥坑里玩了。", "py": "Wǒ yě zuì xǐhuan zài níkēng lǐ wán le.", "ko": "나도 진흙탕에서 노는 게 제일 좋아.", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby>이에<rt>ˇ</rt></ruby> <ruby>쭈에이<rt>ˋ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["也", "~도"], ["了", "(강조)"]], "num": "09", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇，如果你想在泥坑里跳，你必须穿上靴子才行。", "py": "Pèiqí, rúguǒ nǐ xiǎng zài níkēng lǐ tiào, nǐ bìxū chuānshang xuēzi cái xíng.", "ko": "페파, 진흙탕에서 뛰고 싶으면 장화를 꼭 신어야 해.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby>, <ruby><i>ᵛ</i>루<rt>ˊ</rt></ruby><ruby>꾸어<rt>ˇ</rt></ruby> <ruby>니<rt>ˇ</rt></ruby> <ruby>씨앙<rt>ˇ</rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>삐<rt>ˋ</rt></ruby><ruby>쒸<rt>ˉ</rt></ruby> <ruby><i>ᵛ</i>추안<rt>ˉ</rt></ruby><ruby><i>ᵛ</i>샹<rt></rt></ruby> <ruby>쒸에<rt>ˉ</rt></ruby><ruby>즈<rt></rt></ruby> <ruby>차이<rt>ˊ</rt></ruby> <ruby>씽<rt>ˊ</rt></ruby>.", "v": [["如果", "만약"], ["想", "~하고 싶다"], ["跳", "뛰다"], ["必须…才行", "꼭 ~해야 한다"], ["穿上", "신다"], ["靴子", "장화"]], "num": "10", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "对不起，妈妈。", "py": "Duìbuqǐ, māma.", "ko": "죄송해요, 엄마.", "ph": "<ruby>뚜에이<rt>ˋ</rt></ruby><ruby>부<rt></rt></ruby><ruby>치<rt>ˇ</rt></ruby>, <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby>.", "v": [["对不起", "죄송해요"]], "num": "11", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "乔治也喜欢在泥坑里跳。", "py": "Qiáozhì yě xǐhuan zài níkēng lǐ tiào.", "ko": "조지도 진흙탕에서 뛰는 걸 좋아해요.", "ph": "<ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby>이에<rt>ˇ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby>.", "v": [["也", "~도"], ["跳", "뛰다"]], "num": "12", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "我跟乔治说：如果你想在泥坑里跳，你必须穿上鞋子才行。", "py": "Wǒ gēn Qiáozhì shuō: rúguǒ nǐ xiǎng zài níkēng lǐ tiào, nǐ bìxū chuānshang xiézi cái xíng.", "ko": "나는 조지에게 말했어요. 진흙탕에서 뛰고 싶으면 신발을 꼭 신어야 해.", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby>껀<rt>ˉ</rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>슈어<rt>ˉ</rt></ruby>: <ruby><i>ᵛ</i>루<rt>ˊ</rt></ruby><ruby>꾸어<rt>ˇ</rt></ruby> <ruby>니<rt>ˇ</rt></ruby> <ruby>씨앙<rt>ˇ</rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>삐<rt>ˋ</rt></ruby><ruby>쒸<rt>ˉ</rt></ruby> <ruby><i>ᵛ</i>추안<rt>ˉ</rt></ruby><ruby><i>ᵛ</i>샹<rt></rt></ruby> <ruby>씨에<rt>ˊ</rt></ruby><ruby>즈<rt></rt></ruby> <ruby>차이<rt>ˊ</rt></ruby> <ruby>씽<rt>ˊ</rt></ruby>.", "v": [["跟", "~에게"], ["说", "말하다"], ["鞋子", "신발"]], "num": "13", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇喜欢照顾弟弟乔治。", "py": "Pèiqí xǐhuan zhàogù dìdi Qiáozhì.", "ko": "페파는 남동생 조지를 돌봐 주는 걸 좋아해요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby><i>ᵛ</i>짜오<rt>ˋ</rt></ruby><ruby>꾸<rt>ˋ</rt></ruby> <ruby>띠<rt>ˋ</rt></ruby><ruby>디<rt></rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>.", "v": [["照顾", "돌보다"], ["弟弟", "남동생"]], "num": "14", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "好了，乔治，我们再去找几个泥坑跳吧。", "py": "Hǎo le, Qiáozhì, wǒmen zài qù zhǎo jǐ ge níkēng tiào ba.", "ko": "됐다, 조지. 우리 진흙탕 몇 개 더 찾아서 뛰자.", "ph": "<ruby>하오<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>짜오<rt>ˇ</rt></ruby> <ruby>찌<rt>ˇ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>바<rt></rt></ruby>.", "v": [["再", "다시"], ["找", "찾다"], ["几个", "몇 개"], ["吧", "~하자"]], "num": "15", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇和乔治玩得很开心。", "py": "Pèiqí hé Qiáozhì wán de hěn kāixīn.", "ko": "페파와 조지는 아주 신나게 놀아요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>헌<rt>ˇ</rt></ruby> <ruby>카이<rt>ˉ</rt></ruby><ruby>씬<rt>ˉ</rt></ruby>.", "v": [["和", "~와"], ["开心", "즐겁다"], ["玩得很开心", "신나게 놀다"]], "num": "16", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇找到了一个小泥坑，乔治找到了一个大泥坑。", "py": "Pèiqí zhǎodào le yí ge xiǎo níkēng, Qiáozhì zhǎodào le yí ge dà níkēng.", "ko": "페파는 작은 진흙탕을, 조지는 큰 진흙탕을 찾았어요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>짜오<rt>ˇ</rt></ruby><ruby>따오<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby> <ruby>이<rt>ˊ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>씨아오<rt>ˇ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>짜오<rt>ˇ</rt></ruby><ruby>따오<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby> <ruby>이<rt>ˊ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>따<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby>.", "v": [["找到", "찾아내다"], ["小", "작은"], ["大", "큰"]], "num": "17", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "你看，乔治，那边有一个很大的泥坑。", "py": "Nǐ kàn, Qiáozhì, nàbiān yǒu yí ge hěn dà de níkēng.", "ko": "봐, 조지. 저기 아주 큰 진흙탕이 있어.", "ph": "<ruby>니<rt>ˇ</rt></ruby> <ruby>칸<rt>ˋ</rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>, <ruby>나<rt>ˋ</rt></ruby><ruby>삐엔<rt>ˉ</rt></ruby> <ruby>여우<rt>ˇ</rt></ruby> <ruby>이<rt>ˊ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>헌<rt>ˇ</rt></ruby> <ruby>따<rt>ˋ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby>.", "v": [["你看", "봐"], ["那边", "저기"], ["有", "있다"], ["很", "아주"]], "num": "18", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "乔治想第一个跳到泥坑里去玩。", "py": "Qiáozhì xiǎng dì-yī ge tiào dào níkēng lǐ qù wán.", "ko": "조지는 제일 먼저 진흙탕에 뛰어들고 싶어요.", "ph": "<ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby>씨앙<rt>ˇ</rt></ruby> <ruby>띠<rt>ˋ</rt></ruby><ruby>이<rt>ˉ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>따오<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby>.", "v": [["第一个", "첫 번째"], ["跳到", "뛰어들다"]], "num": "19", "chk": "", "scene": "장면 3 · 제일 큰 진흙탕", "sceneZh": "很大的泥坑"}, {"zh": "等等，乔治，我得先检查一下这里是否安全。", "py": "Děngdeng, Qiáozhì, wǒ děi xiān jiǎnchá yíxià zhèlǐ shìfǒu ānquán.", "ko": "잠깐, 조지. 여기가 안전한지 내가 먼저 확인해 봐야 해.", "ph": "<ruby>떵<rt>ˇ</rt></ruby><ruby>덩<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>, <ruby>워<rt>ˇ</rt></ruby> <ruby>떼이<rt>ˇ</rt></ruby> <ruby>씨엔<rt>ˉ</rt></ruby> <ruby>찌엔<rt>ˇ</rt></ruby><ruby><i>ᵛ</i>차<rt>ˊ</rt></ruby> <ruby>이<rt>ˊ</rt></ruby><ruby>씨아<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby><ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby><ruby><i>ᵒ</i>퍼우<rt>ˇ</rt></ruby> <ruby>안<rt>ˉ</rt></ruby><ruby>취엔<rt>ˊ</rt></ruby>.", "v": [["等等", "잠깐"], ["得", "~해야 한다"], ["先", "먼저"], ["检查", "확인하다"], ["是否", "~인지"], ["安全", "안전하다"]], "num": "20", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "很好，你可以放心地玩了。", "py": "Hěn hǎo, nǐ kěyǐ fàngxīn de wán le.", "ko": "좋아, 이제 마음 놓고 놀아도 돼.", "ph": "<ruby>헌<rt>ˇ</rt></ruby> <ruby>하오<rt>ˇ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>커<rt>ˇ</rt></ruby><ruby>이<rt>ˇ</rt></ruby> <ruby><i>ᵒ</i>팡<rt>ˋ</rt></ruby><ruby>씬<rt>ˉ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["可以", "~해도 된다"], ["放心", "마음 놓다"]], "num": "21", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "对不起。", "py": "Duìbuqǐ.", "ko": "미안해.", "ph": "<ruby>뚜에이<rt>ˋ</rt></ruby><ruby>부<rt></rt></ruby><ruby>치<rt>ˇ</rt></ruby>.", "v": [["对不起", "미안해"]], "num": "22", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "乔治只是先你而已。", "py": "Qiáozhì zhǐshì xiān nǐ éryǐ.", "ko": "조지가 너보다 먼저 했을 뿐이야.", "ph": "<ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>쯔<rt>ˇ</rt></ruby><ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>씨엔<rt>ˉ</rt></ruby> <ruby>니<rt>ˇ</rt></ruby> <ruby>얼<i>ᵛ</i><rt>ˊ</rt></ruby><ruby>이<rt>ˇ</rt></ruby>.", "v": [["只是", "단지"], ["先", "먼저"], ["而已", "~일 뿐"]], "num": "23", "chk": "영상 확인: 받아 적은 대사가 어색해요", "scene": "", "sceneZh": ""}, {"zh": "佩奇和乔治喜欢在泥坑里跳来跳去。", "py": "Pèiqí hé Qiáozhì xǐhuan zài níkēng lǐ tiào lái tiào qù.", "ko": "페파와 조지는 진흙탕에서 이리저리 뛰는 걸 좋아해요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>.", "v": [["跳来跳去", "이리저리 뛰다"]], "num": "24", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "来吧，乔治，我们快点去给爸爸看看吧。", "py": "Lái ba, Qiáozhì, wǒmen kuài diǎn qù gěi bàba kànkan ba.", "ko": "가자, 조지. 얼른 아빠한테 보여 주러 가자.", "ph": "<ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>바<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>콰이<rt>ˋ</rt></ruby> <ruby>띠엔<rt>ˇ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby> <ruby>께이<rt>ˇ</rt></ruby> <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby> <ruby>칸<rt>ˋ</rt></ruby><ruby>칸<rt></rt></ruby> <ruby>바<rt></rt></ruby>.", "v": [["来吧", "자, 가자"], ["快点", "빨리"], ["给…看", "~에게 보여 주다"]], "num": "25", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "我的天哪！", "py": "Wǒ de tiān na!", "ko": "세상에!", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>티엔<rt>ˉ</rt></ruby> <ruby>나<rt></rt></ruby>!", "v": [["天哪", "세상에"]], "num": "26", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "爸爸，爸爸，你猜猜我们刚才干了什么？", "py": "Bàba, bàba, nǐ cāicai wǒmen gāngcái gàn le shénme?", "ko": "아빠, 아빠, 우리가 방금 뭐 했게요?", "ph": "<ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby><ruby>차이<rt></rt></ruby> <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>깐<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby> <ruby><i>ᵛ</i>선<rt>ˊ</rt></ruby><ruby>머<rt></rt></ruby>?", "v": [["猜", "맞히다"], ["刚才", "방금"], ["干", "하다"], ["什么", "무엇"]], "num": "27", "chk": "", "scene": "장면 4 · 아빠, 맞혀 보세요", "sceneZh": "猜猜看"}, {"zh": "让我猜猜，你们刚才看电视了。", "py": "Ràng wǒ cāicai, nǐmen gāngcái kàn diànshì le.", "ko": "어디 맞혀 볼까. 방금 텔레비전 봤구나.", "ph": "<ruby><i>ᵛ</i>랑<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby><ruby>차이<rt></rt></ruby>, <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>칸<rt>ˋ</rt></ruby> <ruby>띠엔<rt>ˋ</rt></ruby><ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["让我", "내가 ~할게"], ["看电视", "텔레비전 보다"]], "num": "28", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "不对，你猜错了。", "py": "Bú duì, nǐ cāi cuò le.", "ko": "아니에요, 틀렸어요.", "ph": "<ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["不对", "틀리다"], ["猜错", "잘못 맞히다"]], "num": "29", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "你们刚才洗澡了。", "py": "Nǐmen gāngcái xǐzǎo le.", "ko": "방금 목욕했구나.", "ph": "<ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>짜오<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["洗澡", "목욕하다"]], "num": "30", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "不对，不对。", "py": "Bú duì, bú duì.", "ko": "아니에요, 아니에요.", "ph": "<ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>, <ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>.", "v": [["不对", "아니다"]], "num": "31", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "我知道了，你们刚才在泥坑里跳来跳去。", "py": "Wǒ zhīdào le, nǐmen gāngcái zài níkēng lǐ tiào lái tiào qù.", "ko": "알았다. 방금 진흙탕에서 이리저리 뛰었구나.", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>쯔<rt>ˉ</rt></ruby><ruby>따오<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>, <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>.", "v": [["知道", "알다"]], "num": "32", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "没错没错，爸爸，我们在泥坑里跳来跳去。", "py": "Méi cuò méi cuò, bàba, wǒmen zài níkēng lǐ tiào lái tiào qù.", "ko": "맞아요 맞아요, 아빠. 우리 진흙탕에서 이리저리 뛰었어요.", "ph": "<ruby>메이<rt>ˊ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby> <ruby>메이<rt>ˊ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby>, <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>.", "v": [["没错", "맞다"]], "num": "33", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "看看你们弄得多脏啊！", "py": "Kànkan nǐmen nòng de duō zāng a!", "ko": "너희 얼마나 더러워졌는지 좀 봐라!", "ph": "<ruby>칸<rt>ˋ</rt></ruby><ruby>칸<rt></rt></ruby> <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>농<rt>ˋ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>뚜어<rt>ˉ</rt></ruby> <ruby>짱<rt>ˉ</rt></ruby> <ruby>아<rt></rt></ruby>!", "v": [["弄", "만들다"], ["多", "얼마나"], ["脏", "더럽다"]], "num": "34", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "糟糕！", "py": "Zāogāo!", "ko": "큰일 났다!", "ph": "<ruby>짜오<rt>ˉ</rt></ruby><ruby>까오<rt>ˉ</rt></ruby>!", "v": [["糟糕", "큰일 났다"]], "num": "35", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "哦，没事，只是些泥而已。", "py": "Ò, méi shì, zhǐ shì xiē ní éryǐ.", "ko": "아, 괜찮아. 그냥 진흙일 뿐이야.", "ph": "<ruby>오<rt>ˋ</rt></ruby>, <ruby>메이<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby>, <ruby><i>ᵛ</i>쯔<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>씨에<rt>ˉ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby> <ruby>얼<i>ᵛ</i><rt>ˊ</rt></ruby><ruby>이<rt>ˇ</rt></ruby>.", "v": [["没事", "괜찮다"], ["些", "약간의"], ["泥", "진흙"]], "num": "36", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "快清理干净，别让妈妈看到你们这么脏。", "py": "Kuài qīnglǐ gānjìng, bié ràng māma kàndào nǐmen zhème zāng.", "ko": "얼른 깨끗이 씻자. 엄마가 너희 이렇게 더러운 거 보기 전에.", "ph": "<ruby>콰이<rt>ˋ</rt></ruby> <ruby>칭<rt>ˉ</rt></ruby><ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>깐<rt>ˉ</rt></ruby><ruby>찡<rt>ˋ</rt></ruby>, <ruby>삐에<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>랑<rt>ˋ</rt></ruby> <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby> <ruby>칸<rt>ˋ</rt></ruby><ruby>따오<rt>ˋ</rt></ruby> <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby><ruby>머<rt></rt></ruby> <ruby>짱<rt>ˉ</rt></ruby>.", "v": [["快", "빨리"], ["清理干净", "깨끗이 치우다"], ["别让", "~하지 않게"], ["看到", "보다"], ["这么", "이렇게"]], "num": "37", "chk": "", "scene": "장면 5 · 다 같이 진흙 놀이", "sceneZh": "大家一起跳"}, {"zh": "爸爸，我们清理干净之后，你和妈妈也会一起来玩吗？", "py": "Bàba, wǒmen qīnglǐ gānjìng zhīhòu, nǐ hé māma yě huì yìqǐ lái wán ma?", "ko": "아빠, 우리 다 씻고 나면 아빠랑 엄마도 같이 놀 거예요?", "ph": "<ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>칭<rt>ˉ</rt></ruby><ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>깐<rt>ˉ</rt></ruby><ruby>찡<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>쯔<rt>ˉ</rt></ruby><ruby>허우<rt>ˋ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby> <ruby>이에<rt>ˇ</rt></ruby> <ruby>후에이<rt>ˋ</rt></ruby> <ruby>이<rt>ˋ</rt></ruby><ruby>치<rt>ˇ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>마<rt></rt></ruby>?", "v": [["之后", "~한 후"], ["会", "~할 것이다"], ["一起", "함께"], ["来玩", "놀러 오다"]], "num": "38", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "是的，我们都可以在花园玩。", "py": "Shì de, wǒmen dōu kěyǐ zài huāyuán wán.", "ko": "그럼, 우리 다 같이 마당에서 놀 수 있어.", "ph": "<ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>더<rt></rt></ruby>, <ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>떠우<rt>ˉ</rt></ruby> <ruby>커<rt>ˇ</rt></ruby><ruby>이<rt>ˇ</rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>화<rt>ˉ</rt></ruby><ruby>위엔<rt>ˊ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby>.", "v": [["是的", "맞아"], ["都", "모두"], ["花园", "정원"]], "num": "39", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇和乔治穿着他们的靴子。", "py": "Pèiqí hé Qiáozhì chuānzhe tāmen de xuēzi.", "ko": "페파와 조지는 장화를 신었어요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>추안<rt>ˉ</rt></ruby><ruby><i>ᵛ</i>저<rt></rt></ruby> <ruby>타<rt>ˉ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>더<rt></rt></ruby> <ruby>쒸에<rt>ˉ</rt></ruby><ruby>즈<rt></rt></ruby>.", "v": [["穿着", "신고 있다"], ["他们的", "그들의"]], "num": "40", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "猪妈妈和猪爸爸也穿着他们的靴子。", "py": "Zhū māma hé zhū bàba yě chuānzhe tāmen de xuēzi.", "ko": "엄마 돼지와 아빠 돼지도 장화를 신었어요.", "ph": "<ruby><i>ᵛ</i>쭈<rt>ˉ</rt></ruby> <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby> <ruby>허<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>쭈<rt>ˉ</rt></ruby> <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby> <ruby>이에<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>추안<rt>ˉ</rt></ruby><ruby><i>ᵛ</i>저<rt></rt></ruby> <ruby>타<rt>ˉ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>더<rt></rt></ruby> <ruby>쒸에<rt>ˉ</rt></ruby><ruby>즈<rt></rt></ruby>.", "v": [["猪", "돼지"], ["穿着", "신고 있다"]], "num": "41", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "佩奇喜欢在泥坑里跳来跳去，", "py": "Pèiqí xǐhuan zài níkēng lǐ tiào lái tiào qù,", "ko": "페파는 진흙탕에서 이리저리 뛰는 걸 좋아해요.", "ph": "<ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>,", "v": [["跳来跳去", "이리저리 뛰다"]], "num": "42", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "大家都喜欢在泥坑里跳来跳去。", "py": "dàjiā dōu xǐhuan zài níkēng lǐ tiào lái tiào qù.", "ko": "모두 진흙탕에서 이리저리 뛰는 걸 좋아해요.", "ph": "<ruby>따<rt>ˋ</rt></ruby><ruby>찌아<rt>ˉ</rt></ruby> <ruby>떠우<rt>ˉ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>환<rt></rt></ruby> <ruby>짜이<rt>ˋ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby><ruby>컹<rt>ˉ</rt></ruby> <ruby><i>을</i>리<rt>ˇ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>.", "v": [["大家", "모두"], ["都", "다"]], "num": "43", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "看看，猪爸爸，瞧你身上多脏啊！", "py": "Kànkan, zhū bàba, qiáo nǐ shēnshang duō zāng a!", "ko": "봐요, 아빠 돼지. 몸이 얼마나 더러워졌는지 좀 봐요!", "ph": "<ruby>칸<rt>ˋ</rt></ruby><ruby>칸<rt></rt></ruby>, <ruby><i>ᵛ</i>쭈<rt>ˉ</rt></ruby> <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby> <ruby>니<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>선<rt>ˉ</rt></ruby><ruby><i>ᵛ</i>샹<rt></rt></ruby> <ruby>뚜어<rt>ˉ</rt></ruby> <ruby>짱<rt>ˉ</rt></ruby> <ruby>아<rt></rt></ruby>!", "v": [["瞧", "보다"], ["身上", "몸"], ["脏", "더럽다"]], "num": "44", "chk": "", "scene": "", "sceneZh": ""}, {"zh": "只不过是些泥而已！", "py": "Zhǐ búguò shì xiē ní éryǐ!", "ko": "그냥 진흙일 뿐이야!", "ph": "<ruby><i>ᵛ</i>쯔<rt>ˇ</rt></ruby> <ruby>뿌<rt>ˊ</rt></ruby><ruby>꾸어<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>씨에<rt>ˉ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby> <ruby>얼<i>ᵛ</i><rt>ˊ</rt></ruby><ruby>이<rt>ˇ</rt></ruby>!", "v": [["只不过", "단지"], ["而已", "~일 뿐"]], "num": "45", "chk": "", "scene": "", "sceneZh": ""}];
+const hasTTS = "speechSynthesis" in window;
+const warn = () => { document.getElementById("warn").hidden = false; };
+if (!hasTTS) warn();
+let zhVoice = null;
+function pickVoice(){
+  try{ const v = speechSynthesis.getVoices();
+    zhVoice = v.find(x=>x.lang==="zh-CN") || v.find(x=>/^zh/i.test(x.lang) && !/HK|TW/i.test(x.lang)) || null; }catch(e){}
+}
+if (hasTTS){ pickVoice(); try{ speechSynthesis.onvoiceschanged = pickVoice; }catch(e){} }
+
+let queueToken = 0;
+function mark(i){
+  document.querySelectorAll("#list li.s").forEach((li,k)=>li.classList.toggle("now", k===i));
+}
+function say(text, rate, onend){
+  if (!hasTTS){ warn(); return; }
+  try{
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "zh-CN"; if (zhVoice) u.voice = zhVoice; u.rate = rate;
+    if (onend) u.onend = onend;
+    u.onerror = () => { if (onend) onend(); };
+    speechSynthesis.speak(u);
+  }catch(e){ warn(); }
+}
+function stopAll(){ queueToken++; try{ speechSynthesis.cancel(); }catch(e){} mark(-1); }
+function playOne(i, rate){
+  stopAll(); mark(i);
+  const t = queueToken;
+  say(S[i].zh, rate, () => { if (t === queueToken) mark(-1); });
+}
+function playFrom(i, rate){
+  if (i >= S.length){ mark(-1); return; }
+  const t = queueToken; mark(i);
+  const li = document.querySelectorAll("#list li.s")[i];
+  try{ li.scrollIntoView({block:"center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); }catch(e){}
+  say(S[i].zh, rate, () => { if (t !== queueToken) return; setTimeout(()=>{ if (t === queueToken) playFrom(i+1, rate); }, 900); });
+}
+document.getElementById("playAll").onclick = () => { stopAll(); playFrom(0, 0.9); };
+document.getElementById("playAllSlow").onclick = () => { stopAll(); playFrom(0, 0.6); };
+document.getElementById("stop").onclick = stopAll;
+
+const list = document.getElementById("list");
+S.forEach((s,i)=>{
+  if (s.scene){ const h = document.createElement("li"); h.className = "sc";
+    h.innerHTML = `<b>${s.scene.split(" · ")[0]}</b><span>${s.scene.split(" · ")[1]}<i>${s.sceneZh}</i></span>`; list.appendChild(h); }
+  const li = document.createElement("li"); li.className = "s";
+  li.innerHTML = `<div class="num">${s.num}</div>
+   <div class="body"><div class="ko">${s.ko}</div><div class="ph">${s.ph}</div>
+   <div><span class="zh">${s.zh}</span> <span class="py">${s.py}</span></div>${s.chk ? `<div class="chk">※ ${s.chk}</div>` : ""}
+   <div class="tts"><button type="button" data-r="0.9">▶ 보통</button><button type="button" data-r="0.6">▶ 천천히</button></div></div>
+   <div class="voc">${s.v.map(([z,m])=>`<div><span>${z}</span>${m}</div>`).join("")}</div>`;
+  li.querySelectorAll("button").forEach(b => b.onclick = () => playOne(i, +b.dataset.r));
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>
