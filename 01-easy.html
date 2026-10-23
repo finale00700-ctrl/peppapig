@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>佩奇 泥坑 쉬운 문장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: blueprint worksheet (Chinese, navy + red) — header with play-all, legend, numbered rows: 뜻 → 성조 한글 발음 → 汉字·병음 → 단어 */
+:root{
+  --bg:#f5f7fb; --paper:#ffffff; --grid:#e0e5ef; --ink:#14243f; --muted:#5d6a82;
+  --navy:#173a6b; --accent:#c8312b; --accent-soft:#fbeceb; --line:#ccd5e3; --now:#fff6dc;
+  --f-ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1729; --paper:#12213a; --grid:#1b2d4b; --ink:#e6edf7; --muted:#9aaccb;
+  --navy:#8fb3ea; --accent:#f0706a; --accent-soft:#33191b; --line:#2a3f62; --now:#2c2a18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1729; --paper:#12213a; --grid:#1b2d4b; --ink:#e6edf7; --muted:#9aaccb;
+  --navy:#8fb3ea; --accent:#f0706a; --accent-soft:#33191b; --line:#2a3f62; --now:#2c2a18; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ko);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;padding:0 16px;padding-block:28px 48px}
+.sheet{max-width:860px;margin:0 auto;background:var(--paper);border:1.5px solid var(--navy);position:relative;padding:28px 28px 20px}
+.sheet::before,.sheet::after{content:"";position:absolute;width:18px;height:18px;border:3px solid var(--accent)}
+.sheet::before{top:-6px;left:-6px;border-right:0;border-bottom:0}
+.sheet::after{bottom:-6px;right:-6px;border-left:0;border-top:0}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:14px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+h1{margin:4px 0 0;font-size:28px;font-weight:900;color:var(--navy);text-wrap:balance}
+h1 .zhT{font-family:var(--f-zh);margin-right:8px}
+.meta{display:grid;gap:6px;justify-items:end;font-size:13px;color:var(--muted)}
+.all{display:flex;gap:6px;flex-wrap:wrap}
+.all button{font-size:13px;font-weight:700;padding:6px 12px}
+.all .go{background:var(--accent);border-color:var(--accent);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;font-size:13px;color:var(--muted)}
+.legend b{font-family:var(--f-mono);color:var(--accent);font-size:16px;margin-right:4px}
+.legend .t b{color:var(--navy)}
+.how{font-size:13px;color:var(--muted);margin:4px 0 8px}
+ol{list-style:none;margin:0;padding:0}
+li{display:grid;grid-template-columns:34px 1fr minmax(120px,170px);gap:4px 14px;padding:14px 8px;border-bottom:1px dashed var(--line);align-items:start;transition:background .2s}
+li.now{background:var(--now)}
+.num{font-family:var(--f-mono);font-weight:700;color:var(--accent);font-size:15px;padding-top:16px}
+.body{min-width:0;display:grid;gap:4px}
+.ko{font-size:14px;color:var(--muted)}
+.ph{font-size:22px;font-weight:700;color:var(--ink);line-height:1.9;word-break:keep-all}
+.ph i{font-style:normal;color:var(--accent);font-family:var(--f-mono);font-weight:700}
+ruby{ruby-position:over}
+rt{font-size:15px;color:var(--navy);font-weight:700;line-height:1}
+.zh{font-family:var(--f-zh);font-size:18px;color:var(--navy);font-weight:500}
+.py{font-family:var(--f-mono);font-size:13px;color:var(--navy);opacity:.85}
+.tts{display:flex;gap:4px;margin-top:4px}
+.voc{border-left:2px solid var(--line);padding-left:10px;display:grid;gap:3px;font-size:13px;align-content:start;min-width:0}
+.voc span{font-family:var(--f-zh);color:var(--accent);font-weight:700;margin-right:4px}
+button{font-family:var(--f-ko);font-size:12px;border:1px solid var(--navy);background:transparent;color:var(--navy);padding:4px 10px;cursor:pointer}
+button:hover{background:var(--navy);color:var(--paper)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.warn{font-size:12px;color:var(--accent);margin:4px 0 0}
+footer{margin-top:14px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:600px){
+  .sheet{padding:20px 14px}
+  li{grid-template-columns:28px 1fr;padding:12px 4px}
+  .voc{grid-column:2;border-left:0;padding-left:0;display:flex;flex-wrap:wrap;gap:4px 12px}
+  .ph{font-size:20px}
+  .meta{justify-items:start}
+}
+@media (prefers-reduced-motion: reduce){li{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="sheet">
+  <header>
+    <div>
+      <div class="eyebrow">한글로중국어 · 小猪佩奇 第1季 01 · 1부</div>
+      <h1><span class="zhT">泥坑</span>쉬운 문장</h1>
+    </div>
+    <div class="meta">
+      <span>30문장 · 한 문장 5번 소리 내어 읽기</span>
+      <div class="all">
+        <button type="button" class="go" id="playAll">▶ 전체 듣기</button>
+        <button type="button" id="playAllSlow">▶ 전체 천천히</button>
+        <button type="button" id="stop">■ 멈춤</button>
+      </div>
+    </div>
+  </header>
+  <div class="legend">
+    <span><b>ᵛ</b>zh·ch·sh·r 혀 말기</span>
+    <span><b>ᵒ</b>f 입술 깨물기</span>
+    <span><b>을</b>l 앞에 작게 ‘을’</span>
+    <span class="t"><b>ˉ ˊ ˇ ˋ</b>1·2·3·4성 (표시 없음 = 경성)</span>
+  </div>
+  <p class="how">듣기 버튼으로 소리를 듣고, 성조 표시를 보며 따라 말해요.</p>
+  <p class="warn" id="warn" hidden>이 화면에서는 소리가 나오지 않아요. 크롬이나 삼성 인터넷에서 열어 주세요.</p>
+  <ol id="list"></ol>
+  <footer><span>1부가 입에 붙으면 2부 쌓아 올리기로</span><span>내 입으로 연습한 소리만 내 귀에 들립니다</span></footer>
+</div>
+
+<script>
+const S = [{"zh": "我是佩奇。", "py": "Wǒ shì Pèiqí.", "ko": "나는 페파예요.", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>페이<rt>ˋ</rt></ruby><ruby>치<rt>ˊ</rt></ruby>.", "v": [["我", "나"], ["是", "~이다"]]}, {"zh": "这是我的弟弟乔治。", "py": "Zhè shì wǒ de dìdi Qiáozhì.", "ko": "이건 내 남동생 조지예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>띠<rt>ˋ</rt></ruby><ruby>디<rt></rt></ruby> <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>.", "v": [["这", "이것"], ["我的", "나의"], ["弟弟", "남동생"]]}, {"zh": "这是我的妈妈。", "py": "Zhè shì wǒ de māma.", "ko": "이건 우리 엄마예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby>.", "v": [["妈妈", "엄마"]]}, {"zh": "这是我的爸爸。", "py": "Zhè shì wǒ de bàba.", "ko": "이건 우리 아빠예요.", "ph": "<ruby><i>ᵛ</i>쩌<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>빠<rt>ˋ</rt></ruby><ruby>바<rt></rt></ruby>.", "v": [["爸爸", "아빠"]]}, {"zh": "今天下雨了。", "py": "Jīntiān xià yǔ le.", "ko": "오늘 비가 와요.", "ph": "<ruby>찐<rt>ˉ</rt></ruby><ruby>티엔<rt>ˉ</rt></ruby> <ruby>씨아<rt>ˋ</rt></ruby> <ruby>위<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["今天", "오늘"], ["下雨", "비가 오다"]]}, {"zh": "现在雨停了。", "py": "Xiànzài yǔ tíng le.", "ko": "이제 비가 그쳤어요.", "ph": "<ruby>씨엔<rt>ˋ</rt></ruby><ruby>짜이<rt>ˋ</rt></ruby> <ruby>위<rt>ˇ</rt></ruby> <ruby>팅<rt>ˊ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["现在", "지금"], ["雨停", "비가 그치다"]]}, {"zh": "我们能出去玩吗？", "py": "Wǒmen néng chūqù wán ma?", "ko": "우리 나가서 놀아도 돼요?", "ph": "<ruby>워<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>넝<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>추<rt>ˉ</rt></ruby><ruby>취<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>마<rt></rt></ruby>?", "v": [["我们", "우리"], ["能", "~할 수 있다"], ["出去", "나가다"], ["玩", "놀다"]]}, {"zh": "好的，你们两个去玩吧。", "py": "Hǎo de, nǐmen liǎng ge qù wán ba.", "ko": "그래, 둘이 가서 놀렴.", "ph": "<ruby>하오<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby>, <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby><i>을</i>리앙<rt>ˇ</rt></ruby> <ruby>거<rt></rt></ruby> <ruby>취<rt>ˋ</rt></ruby> <ruby>완<rt>ˊ</rt></ruby> <ruby>바<rt></rt></ruby>.", "v": [["好的", "좋아"], ["你们", "너희"], ["两个", "두 명"]]}, {"zh": "对不起，妈妈。", "py": "Duìbuqǐ, māma.", "ko": "죄송해요, 엄마.", "ph": "<ruby>뚜에이<rt>ˋ</rt></ruby><ruby>부<rt></rt></ruby><ruby>치<rt>ˇ</rt></ruby>, <ruby>마<rt>ˉ</rt></ruby><ruby>마<rt></rt></ruby>.", "v": [["对不起", "죄송해요"]]}, {"zh": "好了，乔治。", "py": "Hǎo le, Qiáozhì.", "ko": "됐다, 조지.", "ph": "<ruby>하오<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>.", "v": [["好了", "됐다"]]}, {"zh": "你看，乔治！", "py": "Nǐ kàn, Qiáozhì!", "ko": "봐, 조지!", "ph": "<ruby>니<rt>ˇ</rt></ruby> <ruby>칸<rt>ˋ</rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>!", "v": [["你看", "봐"]]}, {"zh": "等等，乔治！", "py": "Děngdeng, Qiáozhì!", "ko": "잠깐, 조지!", "ph": "<ruby>떵<rt>ˇ</rt></ruby><ruby>덩<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>!", "v": [["等等", "잠깐"]]}, {"zh": "很好！", "py": "Hěn hǎo!", "ko": "좋아!", "ph": "<ruby>헌<rt>ˇ</rt></ruby> <ruby>하오<rt>ˇ</rt></ruby>!", "v": [["很", "아주"], ["好", "좋다"]]}, {"zh": "对不起。", "py": "Duìbuqǐ.", "ko": "미안해.", "ph": "<ruby>뚜에이<rt>ˋ</rt></ruby><ruby>부<rt></rt></ruby><ruby>치<rt>ˇ</rt></ruby>.", "v": [["对不起", "미안해"]]}, {"zh": "跳来跳去！", "py": "Tiào lái tiào qù!", "ko": "이리저리 뛰어요!", "ph": "<ruby>티아오<rt>ˋ</rt></ruby> <ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>티아오<rt>ˋ</rt></ruby> <ruby>취<rt>ˋ</rt></ruby>!", "v": [["跳", "뛰다"], ["跳来跳去", "이리저리 뛰다"]]}, {"zh": "来吧，乔治！", "py": "Lái ba, Qiáozhì!", "ko": "가자, 조지!", "ph": "<ruby><i>을</i>라이<rt>ˊ</rt></ruby> <ruby>바<rt></rt></ruby>, <ruby>치아오<rt>ˊ</rt></ruby><ruby><i>ᵛ</i>쯔<rt>ˋ</rt></ruby>!", "v": [["来吧", "자, 가자"]]}, {"zh": "我的天哪！", "py": "Wǒ de tiān na!", "ko": "세상에!", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>티엔<rt>ˉ</rt></ruby> <ruby>나<rt></rt></ruby>!", "v": [["天哪", "세상에"]]}, {"zh": "你猜猜！", "py": "Nǐ cāicai!", "ko": "맞혀 보세요!", "ph": "<ruby>니<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby><ruby>차이<rt></rt></ruby>!", "v": [["猜猜", "맞혀 보다"]]}, {"zh": "让我猜猜。", "py": "Ràng wǒ cāicai.", "ko": "어디 맞혀 볼까.", "ph": "<ruby><i>ᵛ</i>랑<rt>ˋ</rt></ruby> <ruby>워<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby><ruby>차이<rt></rt></ruby>.", "v": [["让我", "내가 ~할게"]]}, {"zh": "你们刚才看电视了。", "py": "Nǐmen gāngcái kàn diànshì le.", "ko": "방금 텔레비전 봤구나.", "ph": "<ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>칸<rt>ˋ</rt></ruby> <ruby>띠엔<rt>ˋ</rt></ruby><ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["刚才", "방금"], ["看电视", "텔레비전 보다"]]}, {"zh": "不对，你猜错了。", "py": "Bú duì, nǐ cāi cuò le.", "ko": "아니에요, 틀렸어요.", "ph": "<ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>, <ruby>니<rt>ˇ</rt></ruby> <ruby>차이<rt>ˉ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["不对", "틀리다"], ["猜错", "잘못 맞히다"]]}, {"zh": "你们刚才洗澡了。", "py": "Nǐmen gāngcái xǐzǎo le.", "ko": "방금 목욕했구나.", "ph": "<ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>깡<rt>ˉ</rt></ruby><ruby>차이<rt>ˊ</rt></ruby> <ruby>씨<rt>ˇ</rt></ruby><ruby>짜오<rt>ˇ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>.", "v": [["洗澡", "목욕하다"]]}, {"zh": "不对，不对。", "py": "Bú duì, bú duì.", "ko": "아니에요, 아니에요.", "ph": "<ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>, <ruby>뿌<rt>ˊ</rt></ruby> <ruby>뚜에이<rt>ˋ</rt></ruby>.", "v": [["不对", "아니다"]]}, {"zh": "我知道了！", "py": "Wǒ zhīdào le!", "ko": "알았다!", "ph": "<ruby>워<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>쯔<rt>ˉ</rt></ruby><ruby>따오<rt>ˋ</rt></ruby> <ruby><i>을</i>러<rt></rt></ruby>!", "v": [["知道", "알다"]]}, {"zh": "没错，没错！", "py": "Méi cuò, méi cuò!", "ko": "맞아요, 맞아요!", "ph": "<ruby>메이<rt>ˊ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby>, <ruby>메이<rt>ˊ</rt></ruby> <ruby>추어<rt>ˋ</rt></ruby>!", "v": [["没错", "맞다"]]}, {"zh": "看看你们弄得多脏啊！", "py": "Kànkan nǐmen nòng de duō zāng a!", "ko": "얼마나 더러워졌는지 좀 봐!", "ph": "<ruby>칸<rt>ˋ</rt></ruby><ruby>칸<rt></rt></ruby> <ruby>니<rt>ˇ</rt></ruby><ruby>먼<rt></rt></ruby> <ruby>농<rt>ˋ</rt></ruby> <ruby>더<rt></rt></ruby> <ruby>뚜어<rt>ˉ</rt></ruby> <ruby>짱<rt>ˉ</rt></ruby> <ruby>아<rt></rt></ruby>!", "v": [["看看", "좀 보다"], ["多", "얼마나"], ["脏", "더럽다"]]}, {"zh": "糟糕！", "py": "Zāogāo!", "ko": "큰일 났다!", "ph": "<ruby>짜오<rt>ˉ</rt></ruby><ruby>까오<rt>ˉ</rt></ruby>!", "v": [["糟糕", "큰일 났다"]]}, {"zh": "哦，没事。", "py": "Ò, méi shì.", "ko": "아, 괜찮아.", "ph": "<ruby>오<rt>ˋ</rt></ruby>, <ruby>메이<rt>ˊ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby>.", "v": [["没事", "괜찮다"]]}, {"zh": "只是些泥而已。", "py": "Zhǐ shì xiē ní éryǐ.", "ko": "그냥 진흙일 뿐이야.", "ph": "<ruby><i>ᵛ</i>쯔<rt>ˇ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>씨에<rt>ˉ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby> <ruby>얼<i>ᵛ</i><rt>ˊ</rt></ruby><ruby>이<rt>ˇ</rt></ruby>.", "v": [["泥", "진흙"], ["而已", "~일 뿐"]]}, {"zh": "只不过是些泥而已！", "py": "Zhǐ búguò shì xiē ní éryǐ!", "ko": "그냥 진흙일 뿐이야!", "ph": "<ruby><i>ᵛ</i>쯔<rt>ˇ</rt></ruby> <ruby>뿌<rt>ˊ</rt></ruby><ruby>꾸어<rt>ˋ</rt></ruby> <ruby><i>ᵛ</i>스<rt>ˋ</rt></ruby> <ruby>씨에<rt>ˉ</rt></ruby> <ruby>니<rt>ˊ</rt></ruby> <ruby>얼<i>ᵛ</i><rt>ˊ</rt></ruby><ruby>이<rt>ˇ</rt></ruby>!", "v": [["只不过", "단지 ~일 뿐"]]}];
+const hasTTS = "speechSynthesis" in window;
+const warn = () => { document.getElementById("warn").hidden = false; };
+if (!hasTTS) warn();
+let zhVoice = null;
+function pickVoice(){
+  try{ const v = speechSynthesis.getVoices();
+    zhVoice = v.find(x=>x.lang==="zh-CN") || v.find(x=>/^zh/i.test(x.lang) && !/HK|TW/i.test(x.lang)) || null; }catch(e){}
+}
+if (hasTTS){ pickVoice(); try{ speechSynthesis.onvoiceschanged = pickVoice; }catch(e){} }
+
+let queueToken = 0;
+function mark(i){
+  document.querySelectorAll("#list li").forEach((li,k)=>li.classList.toggle("now", k===i));
+}
+function say(text, rate, onend){
+  if (!hasTTS){ warn(); return; }
+  try{
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "zh-CN"; if (zhVoice) u.voice = zhVoice; u.rate = rate;
+    if (onend) u.onend = onend;
+    u.onerror = () => { if (onend) onend(); };
+    speechSynthesis.speak(u);
+  }catch(e){ warn(); }
+}
+function stopAll(){ queueToken++; try{ speechSynthesis.cancel(); }catch(e){} mark(-1); }
+function playOne(i, rate){
+  stopAll(); mark(i);
+  const t = queueToken;
+  say(S[i].zh, rate, () => { if (t === queueToken) mark(-1); });
+}
+function playFrom(i, rate){
+  if (i >= S.length){ mark(-1); return; }
+  const t = queueToken; mark(i);
+  const li = document.querySelectorAll("#list li")[i];
+  try{ li.scrollIntoView({block:"center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); }catch(e){}
+  say(S[i].zh, rate, () => { if (t !== queueToken) return; setTimeout(()=>{ if (t === queueToken) playFrom(i+1, rate); }, 900); });
+}
+document.getElementById("playAll").onclick = () => { stopAll(); playFrom(0, 0.9); };
+document.getElementById("playAllSlow").onclick = () => { stopAll(); playFrom(0, 0.6); };
+document.getElementById("stop").onclick = stopAll;
+
+const list = document.getElementById("list");
+S.forEach((s,i)=>{
+  const li = document.createElement("li");
+  li.innerHTML = `<div class="num">${String(i+1).padStart(2,"0")}</div>
+   <div class="body"><div class="ko">${s.ko}</div><div class="ph">${s.ph}</div>
+   <div><span class="zh">${s.zh}</span> <span class="py">${s.py}</span></div>
+   <div class="tts"><button type="button" data-r="0.9">▶ 보통</button><button type="button" data-r="0.6">▶ 천천히</button></div></div>
+   <div class="voc">${s.v.map(([z,m])=>`<div><span>${z}</span>${m}</div>`).join("")}</div>`;
+  li.querySelectorAll("button").forEach(b => b.onclick = () => playOne(i, +b.dataset.r));
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>
