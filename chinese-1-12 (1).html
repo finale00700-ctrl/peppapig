@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>한글로 중국어 1~12과</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Noto+Sans+KR:wght@400;600;800&family=Noto+Sans+SC:wght@500;700&display=swap">
+<style>
+/* Layout: one study card at a time on blueprint grid paper; lesson rail on top, controls pinned to the bottom */
+:root{
+  --paper:#f4f6fb; --grid:rgba(27,46,92,.075); --ink:#13224a; --muted:#5b6789;
+  --card:#ffffff; --line:#c9d1e6; --red:#c8202f; --red-soft:#fbe7e9; --navy:#1b2e5c; --gold:#b9811a;
+  --f-ko:"Noto Sans KR",system-ui,sans-serif; --f-zh:"Noto Sans SC","Noto Sans KR",sans-serif;
+  --f-mono:"JetBrains Mono","Noto Sans KR",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0c1630; --grid:rgba(140,170,240,.09); --ink:#e8edfb; --muted:#9aa7cc;
+  --card:#14214a; --line:#2c3d70; --red:#ff5a66; --red-soft:#3a1a2a; --navy:#a9bdf5; --gold:#e8b450; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1630; --grid:rgba(140,170,240,.09); --ink:#e8edfb; --muted:#9aa7cc;
+  --card:#14214a; --line:#2c3d70; --red:#ff5a66; --red-soft:#3a1a2a; --navy:#a9bdf5; --gold:#e8b450; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-size:16px;background:var(--paper);color:var(--ink);font-family:var(--f-ko);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:22px 22px}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 120px;display:flex;flex-direction:column;gap:10px}
+header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}
+h1 b{color:var(--red)}
+.sub{font-size:13px;color:var(--muted)}
+.warn{font-size:15px;background:var(--red-soft);color:var(--ink);border:1px solid var(--red);padding:8px 10px;border-radius:6px}
+.rail{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.rail button,.chips button,.modes button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px}
+.rail button{flex:0 0 auto;min-width:44px;height:40px;font-family:var(--f-mono);font-weight:700;font-size:15px}
+.rail button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.ltitle{display:flex;flex-direction:column;gap:2px;padding:4px 2px}
+.ltitle .zh{font-family:var(--f-zh);font-size:22px;font-weight:700}
+.ltitle .ko{font-size:15px;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.chips,.modes{display:flex;gap:6px;flex-wrap:wrap}
+.chips button,.modes button{padding:7px 10px;font-size:14px}
+.chips button[aria-pressed="true"]{background:var(--navy);color:var(--paper);border-color:var(--navy)}
+.modes button[aria-pressed="true"]{border-color:var(--red);color:var(--red);font-weight:700;box-shadow:inset 0 0 0 1px var(--red)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);transition:width .25s}
+.card{position:relative;background:var(--card);border:1px solid var(--line);padding:22px 18px 18px;display:flex;flex-direction:column;gap:14px;min-height:340px}
+.card::before,.card::after,.card .c3,.card .c4{content:"";position:absolute;width:14px;height:14px;border-color:var(--red);border-style:solid}
+.card::before{top:-1px;left:-1px;border-width:3px 0 0 3px}
+.card::after{top:-1px;right:-1px;border-width:3px 3px 0 0}
+.card .c3{bottom:-1px;left:-1px;border-width:0 0 3px 3px}
+.card .c4{bottom:-1px;right:-1px;border-width:0 3px 3px 0}
+.meta{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta .tag{color:var(--red);font-weight:700}
+.lbl{font-size:13px;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
+.ko-mean{font-size:23px;font-weight:600;line-height:1.45}
+.hz{font-family:var(--f-zh);font-size:clamp(32px,9vw,44px);font-weight:700;line-height:1.35;color:var(--ink);word-break:break-all}
+.py{font-family:var(--f-mono);font-size:19px;color:var(--navy);line-height:1.5}
+.kp{font-size:26px;font-weight:600;line-height:1.6;word-break:keep-all}
+.kp .m{color:var(--red);font-family:var(--f-mono);font-weight:700;font-size:.8em;vertical-align:super;line-height:0}
+.kp .mf{color:var(--gold)}
+.hide{position:relative}
+.hide.covered>*{visibility:hidden}
+.hide.covered::after{content:"탭해서 정답 보기";visibility:visible;position:absolute;inset:0;display:grid;place-items:center;border:1px dashed var(--line);color:var(--muted);font-size:14px;cursor:pointer;border-radius:6px}
+.audio{display:flex;gap:8px;flex-wrap:wrap}
+.audio button,.nav button{font:inherit;cursor:pointer;border-radius:6px}
+.audio button{flex:1 1 30%;padding:13px 10px;font-size:16px;font-weight:600;border:1px solid var(--navy);background:transparent;color:var(--navy)}
+.audio button.main{background:var(--red);border-color:var(--red);color:#fff}
+.checks{display:flex;gap:16px;border-top:1px dashed var(--line);padding-top:12px;flex-wrap:wrap}
+.checks label{display:flex;align-items:center;gap:8px;font-size:17px;cursor:pointer}
+.checks input{width:24px;height:24px;accent-color:var(--red)}
+.legend{font-size:14px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.legend b{color:var(--red);font-family:var(--f-mono)}
+.legend b.f{color:var(--gold)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);
+  padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav .in{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.nav button{flex:1;height:54px;font-size:18px;font-weight:700;border:1px solid var(--navy);background:var(--card);color:var(--navy)}
+.nav button.next{background:var(--navy);color:var(--paper)}
+.nav .count{font-family:var(--f-mono);font-size:16px;min-width:70px;text-align:center;font-variant-numeric:tabular-nums}
+button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>한글로 <b>중국어</b> · 1~12과</h1>
+    <span class="sub" id="done"></span>
+  </header>
+  <div class="warn" id="warn" hidden>이 화면에서는 소리가 나오지 않을 수 있어요. 카카오톡·밴드 안에서 열었다면 <b>크롬</b>이나 <b>삼성 인터넷</b>으로 다시 열어 주세요.</div>
+  <nav class="rail" id="rail" aria-label="과 선택"></nav>
+  <div class="ltitle"><span class="zh" id="lzh"></span><span class="ko" id="lko"></span></div>
+  <div class="row">
+    <div class="chips" id="chips" aria-label="구분"></div>
+    <div class="modes" id="modes" aria-label="훈련 공정"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <article class="card" id="card">
+    <span class="c3"></span><span class="c4"></span>
+    <div class="meta"><span><span class="tag" id="tag"></span> · <span id="lnum"></span></span><span id="pos"></span></div>
+    <div><div class="lbl">뜻</div><div class="ko-mean" id="ko"></div></div>
+    <div class="hide" id="ans">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><div class="lbl">한글 발음</div><div class="kp" id="kp"></div></div>
+        <div class="hz" id="hz"></div>
+        <div class="py" id="py"></div>
+      </div>
+    </div>
+    <div class="audio">
+      <button class="main" id="bZh" type="button">중국어 듣기</button>
+      <button id="bSlow" type="button">천천히</button>
+      <button id="bKo" type="button">한국어 듣기</button>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="c0">입력</label>
+      <label><input type="checkbox" id="c1">연습</label>
+      <label><input type="checkbox" id="c2">독립</label>
+    </div>
+  </article>
+
+  <div class="legend">
+    <span><b>ᵛ</b> 혀를 구부려요 (zh·ch·sh·r, 儿)</span>
+    <span><b class="f">ᵒ</b> 윗니로 아랫입술 (f)</span>
+  </div>
+</div>
+
+<div class="nav"><div class="in">
+  <button id="prev" type="button">이전</button>
+  <span class="count" id="count"></span>
+  <button class="next" id="next" type="button">다음</button>
+</div></div>
+
+<script>
+const DATA = {"lessons": [{"n": 1, "zh": "你会游泳吗？", "ko": "너 수영할 줄 아니?"}, {"n": 2, "zh": "你要做什么？", "ko": "너 뭐 할 거니?"}, {"n": 3, "zh": "我想喝可乐。", "ko": "나는 콜라를 마시고 싶어."}, {"n": 4, "zh": "明天天气怎么样？", "ko": "내일 날씨가 어때요?"}, {"n": 5, "zh": "请你帮我一下儿。", "ko": "나 좀 도와줘."}, {"n": 6, "zh": "你想去明洞，还是去仁寺洞？", "ko": "명동에 가고 싶어 아니면 인사동에 가고 싶어?"}, {"n": 7, "zh": "请问，地铁站怎么走？", "ko": "실례합니다만, 지하철역은 어떻게 가죠?"}, {"n": 8, "zh": "我可以进去吗？", "ko": "나 들어가도 되니?"}, {"n": 9, "zh": "你弟弟比你高！", "ko": "동생이 너보다 키가 크구나!"}, {"n": 10, "zh": "你明天能不能来我家？", "ko": "너 내일 우리 집에 올 수 있니?"}, {"n": 11, "zh": "你有空儿的时候干什么？", "ko": "너 시간 있을 때 뭐 해?"}, {"n": 12, "zh": "我看了很多动物。", "ko": "많은 동물들을 봤어요."}], "cards": [{"l": 1, "s": "본문", "zh": "你会游泳吗？", "py": "Nǐ huì yóu yǒng ma?", "kp": "니 후에이 여우 용 마?", "ko": "너 수영할 줄 아니?"}, {"l": 1, "s": "본문", "zh": "一点儿也不会。", "py": "Yì diǎnr yě bú huì.", "kp": "이 띠알ᵛ 예 뿌 후에이.", "ko": "조금도 할 줄 몰라."}, {"l": 1, "s": "본문", "zh": "那你会什么运动？", "py": "Nà nǐ huì shén me yùn dòng?", "kp": "나 니 후에이 선ᵛ 머 윈 뚱?", "ko": "그럼 너는 무슨 운동을 할 줄 아니?"}, {"l": 1, "s": "본문", "zh": "我会打篮球。", "py": "Wǒ huì dǎ lán qiú.", "kp": "워 후에이 따 란 치우.", "ko": "나는 농구를 할 줄 알아."}, {"l": 1, "s": "해설", "zh": "我会说汉语。", "py": "Wǒ huì shuō Hàn yǔ.", "kp": "워 후에이 수ᵛ어 한 위.", "ko": "나는 중국어를 할 줄 안다."}, {"l": 1, "s": "해설", "zh": "我会弹钢琴。", "py": "Wǒ huì tán gāng qín.", "kp": "워 후에이 탄 깡 친.", "ko": "나는 피아노를 칠 줄 안다."}, {"l": 1, "s": "해설", "zh": "我不会开车。", "py": "Wǒ bú huì kāi chē.", "kp": "워 뿌 후에이 카이 처ᵛ.", "ko": "나는 운전할 줄 모른다."}, {"l": 1, "s": "해설", "zh": "我不会做菜。", "py": "Wǒ bú huì zuò cài.", "kp": "워 뿌 후에이 쭈어 차이.", "ko": "나는 요리할 줄 모른다."}, {"l": 1, "s": "해설", "zh": "我不会说日语。", "py": "Wǒ bú huì shuō Rì yǔ.", "kp": "워 뿌 후에이 수ᵛ어 르ᵛ 위.", "ko": "나는 일본어를 할 줄 모른다."}, {"l": 1, "s": "해설", "zh": "一点儿也不好吃。", "py": "Yì diǎnr yě bù hǎo chī.", "kp": "이 띠알ᵛ 예 뿌 하오 츠ᵛ.", "ko": "조금도 맛있지 않다."}, {"l": 1, "s": "해설", "zh": "一点儿也不知道。", "py": "Yì diǎnr yě bù zhī dào.", "kp": "이 띠알ᵛ 예 뿌 즈ᵛ 따오.", "ko": "조금도 알지 못한다."}, {"l": 1, "s": "심화", "zh": "你会不会唱中国歌？", "py": "Nǐ huì bu huì chàng Zhōng guó gē?", "kp": "니 후에이 뿌 후에이 창ᵛ 중ᵛ 꾸어 꺼?", "ko": "너 중국 노래 부를 줄 아니?"}, {"l": 1, "s": "심화", "zh": "你会不会跳芭蕾舞？", "py": "Nǐ huì bu huì tiào bā lěi wǔ?", "kp": "니 후에이 뿌 후에이 탸오 빠 레이 우?", "ko": "너 발레를 할 줄 아니?"}, {"l": 1, "s": "심화", "zh": "你会做什么运动？", "py": "Nǐ huì zuò shén me yùn dòng?", "kp": "니 후에이 쭈어 선ᵛ 머 윈 뚱?", "ko": "너는 어떤 운동을 할 줄 아니?"}, {"l": 1, "s": "단어", "zh": "打网球", "py": "Dǎ wǎng qiú", "kp": "따 왕 치우", "ko": "테니스를 치다"}, {"l": 1, "s": "단어", "zh": "打棒球", "py": "Dǎ bàng qiú", "kp": "따 빵 치우", "ko": "야구를 하다"}, {"l": 1, "s": "단어", "zh": "打排球", "py": "Dǎ pái qiú", "kp": "따 파이 치우", "ko": "배구를 하다"}, {"l": 1, "s": "단어", "zh": "踢足球", "py": "Tī zú qiú", "kp": "티 쭈 치우", "ko": "축구를 하다"}, {"l": 1, "s": "단어", "zh": "打乒乓球", "py": "Dǎ pīng pāng qiú", "kp": "따 핑 팡 치우", "ko": "탁구를 치다"}, {"l": 1, "s": "단어", "zh": "打羽毛球", "py": "Dǎ yǔ máo qiú", "kp": "따 위 마오 치우", "ko": "배드민턴을 치다"}, {"l": 1, "s": "단어", "zh": "滑雪", "py": "Huá xuě", "kp": "화 쉬에", "ko": "스키를 타다"}, {"l": 1, "s": "단어", "zh": "滑冰", "py": "Huá bīng", "kp": "화 삥", "ko": "스케이트를 타다"}, {"l": 2, "s": "본문", "zh": "下课以后，你要做什么？", "py": "Xià kè yǐ hòu, nǐ yào zuò shén me?", "kp": "샤 커 이 허우, 니 야오 쭈어 선ᵛ 머?", "ko": "수업 끝난 후에 너 뭐 할 거니?"}, {"l": 2, "s": "본문", "zh": "我要去图书馆。", "py": "Wǒ yào qù tú shū guǎn.", "kp": "워 야오 취 투 수ᵛ 꽌.", "ko": "나는 도서관에 갈 거야."}, {"l": 2, "s": "본문", "zh": "你要做作业，对不对？", "py": "Nǐ yào zuò zuò yè, duì bu duì?", "kp": "니 야오 쭈어 쭈어 예, 뚜에이 뿌 뚜에이?", "ko": "너 숙제하려는 거지, 맞지?"}, {"l": 2, "s": "본문", "zh": "对，还要借一本小说。", "py": "Duì, hái yào jiè yì běn xiǎo shuō.", "kp": "뚜에이, 하이 야오 지에 이 뻔 샤오 수ᵛ어.", "ko": "응, 소설책도 한 권 빌리려고."}, {"l": 2, "s": "해설", "zh": "你要做什么？", "py": "Nǐ yào zuò shén me?", "kp": "니 야오 쭈어 선ᵛ 머?", "ko": "너 뭐 할 거니?"}, {"l": 2, "s": "해설", "zh": "我要去看演唱会。", "py": "Wǒ yào qù kàn yǎn chàng huì.", "kp": "워 야오 취 칸 이엔 창ᵛ 후에이.", "ko": "난 콘서트에 갈 거야."}, {"l": 2, "s": "해설", "zh": "你要喝什么？", "py": "Nǐ yào hē shén me?", "kp": "니 야오 허 선ᵛ 머?", "ko": "뭐 마실래?"}, {"l": 2, "s": "해설", "zh": "我要喝牛奶。", "py": "Wǒ yào hē niú nǎi.", "kp": "워 야오 허 니우 나이.", "ko": "난 우유 마실래."}, {"l": 2, "s": "해설", "zh": "你想出去玩儿，对不对？", "py": "Nǐ xiǎng chū qù wánr, duì bu duì?", "kp": "니 샹 추ᵛ 취 왈ᵛ, 뚜에이 뿌 뚜에이?", "ko": "너 나가서 놀고 싶지, 맞지?"}, {"l": 2, "s": "해설", "zh": "你不想做作业，对不对？", "py": "Nǐ bù xiǎng zuò zuò yè, duì bu duì?", "kp": "니 뿌 샹 쭈어 쭈어 예, 뚜에이 뿌 뚜에이?", "ko": "너 숙제하기 싫지, 맞지?"}, {"l": 2, "s": "해설", "zh": "你喜欢中国菜，对不对？", "py": "Nǐ xǐ huan Zhōng guó cài, duì bu duì?", "kp": "니 시 환 중ᵛ 꾸어 차이, 뚜에이 뿌 뚜에이?", "ko": "너 중국 음식 좋아하지, 맞지?"}, {"l": 2, "s": "심화", "zh": "你要吃方便面吗？", "py": "Nǐ yào chī fāng biàn miàn ma?", "kp": "니 야오 츠ᵛ 팡ᵒ 삐엔 미엔 마?", "ko": "라면 먹을래?"}, {"l": 2, "s": "심화", "zh": "我不想吃方便面。", "py": "Wǒ bù xiǎng chī fāng biàn miàn.", "kp": "워 뿌 샹 츠ᵛ 팡ᵒ 삐엔 미엔.", "ko": "라면 먹고 싶지 않아."}, {"l": 2, "s": "심화", "zh": "你现在要去图书馆吗？", "py": "Nǐ xiàn zài yào qù tú shū guǎn ma?", "kp": "니 시엔 짜이 야오 취 투 수ᵛ 꽌 마?", "ko": "너 지금 도서관에 갈 거니?"}, {"l": 2, "s": "심화", "zh": "我现在不想去图书馆。", "py": "Wǒ xiàn zài bù xiǎng qù tú shū guǎn.", "kp": "워 시엔 짜이 뿌 샹 취 투 수ᵛ 꽌.", "ko": "난 지금 도서관에 가고 싶지 않아."}, {"l": 2, "s": "심화", "zh": "吃午饭以后，你要做什么？", "py": "Chī wǔ fàn yǐ hòu, nǐ yào zuò shén me?", "kp": "츠ᵛ 우 판ᵒ 이 허우, 니 야오 쭈어 선ᵛ 머?", "ko": "점심 식사 후에 너 뭐 할 거니?"}, {"l": 2, "s": "심화", "zh": "半个小时以后，他就回来。", "py": "Bàn ge xiǎo shí yǐ hòu, tā jiù huí lái.", "kp": "빤 꺼 샤오 스ᵛ 이 허우, 타 지우 후에이 라이.", "ko": "30분 후에 그는 돌아온다."}, {"l": 2, "s": "심화", "zh": "两个星期以后，他就回来。", "py": "Liǎng ge xīng qī yǐ hòu, tā jiù huí lái.", "kp": "량 꺼 싱 치 이 허우, 타 지우 후에이 라이.", "ko": "2주일 후에 그는 돌아온다."}, {"l": 2, "s": "단어", "zh": "玩儿电子游戏", "py": "Wánr diàn zǐ yóu xì", "kp": "왈ᵛ 띠엔 쯔 여우 시", "ko": "전자오락을 하다"}, {"l": 2, "s": "단어", "zh": "橙汁", "py": "Chéng zhī", "kp": "청ᵛ 즈ᵛ", "ko": "오렌지 주스"}, {"l": 3, "s": "본문", "zh": "我有巧克力，你想吃吗？", "py": "Wǒ yǒu qiǎo kè lì, nǐ xiǎng chī ma?", "kp": "워 여우 챠오 커 리, 니 샹 츠ᵛ 마?", "ko": "나 초콜릿 있는데, 먹고 싶니?"}, {"l": 3, "s": "본문", "zh": "我不想吃，我不喜欢吃甜的。", "py": "Wǒ bù xiǎng chī, wǒ bù xǐ huan chī tián de.", "kp": "워 뿌 샹 츠ᵛ, 워 뿌 시 환 츠ᵛ 티엔 떠.", "ko": "먹고 싶지 않아, 나는 단 거 안 좋아해."}, {"l": 3, "s": "본문", "zh": "现在你想吃什么？", "py": "Xiàn zài nǐ xiǎng chī shén me?", "kp": "시엔 짜이 니 샹 츠ᵛ 선ᵛ 머?", "ko": "지금 너 뭐 먹고 싶어?"}, {"l": 3, "s": "본문", "zh": "现在口渴，我想喝可乐。", "py": "Xiàn zài kǒu kě, wǒ xiǎng hē kě lè.", "kp": "시엔 짜이 커우 커, 워 샹 허 커 러.", "ko": "지금 목말라서 콜라 마시고 싶어."}, {"l": 3, "s": "해설", "zh": "我想喝可乐。", "py": "Wǒ xiǎng hē kě lè.", "kp": "워 샹 허 커 러.", "ko": "콜라를 마시고 싶어."}, {"l": 3, "s": "해설", "zh": "我想吃巧克力。", "py": "Wǒ xiǎng chī qiǎo kè lì.", "kp": "워 샹 츠ᵛ 챠오 커 리.", "ko": "초콜릿을 먹고 싶어."}, {"l": 3, "s": "해설", "zh": "我想看电影。", "py": "Wǒ xiǎng kàn diàn yǐng.", "kp": "워 샹 칸 띠엔 잉.", "ko": "영화를 보고 싶어."}, {"l": 3, "s": "해설", "zh": "我想听音乐。", "py": "Wǒ xiǎng tīng yīn yuè.", "kp": "워 샹 팅 인 위에.", "ko": "음악을 듣고 싶어."}, {"l": 3, "s": "해설", "zh": "你想什么？", "py": "Nǐ xiǎng shén me?", "kp": "니 샹 선ᵛ 머?", "ko": "너 무슨 생각하니?"}, {"l": 3, "s": "해설", "zh": "这是谁的？", "py": "Zhè shì shéi de?", "kp": "저ᵛ 스ᵛ 세ᵛ이 떠?", "ko": "이것은 누구의 것입니까?"}, {"l": 3, "s": "해설", "zh": "这是我的。", "py": "Zhè shì wǒ de.", "kp": "저ᵛ 스ᵛ 워 떠.", "ko": "이것은 나의 것입니다."}, {"l": 3, "s": "해설", "zh": "这是我妈妈的。", "py": "Zhè shì wǒ mā ma de.", "kp": "저ᵛ 스ᵛ 워 마 마 떠.", "ko": "이것은 우리 엄마의 것입니다."}, {"l": 3, "s": "해설", "zh": "这是她的。", "py": "Zhè shì tā de.", "kp": "저ᵛ 스ᵛ 타 떠.", "ko": "이것은 그녀의 것입니다."}, {"l": 3, "s": "해설", "zh": "这是我们的。", "py": "Zhè shì wǒ men de.", "kp": "저ᵛ 스ᵛ 워 먼 떠.", "ko": "이것은 우리의 것입니다."}, {"l": 3, "s": "심화", "zh": "我不想吃饼干。", "py": "Wǒ bù xiǎng chī bǐng gān.", "kp": "워 뿌 샹 츠ᵛ 삥 깐.", "ko": "과자 먹고 싶지 않아."}, {"l": 3, "s": "심화", "zh": "我不想喝牛奶。", "py": "Wǒ bù xiǎng hē niú nǎi.", "kp": "워 뿌 샹 허 니우 나이.", "ko": "우유를 마시고 싶지 않아."}, {"l": 3, "s": "심화", "zh": "我喜欢吃甜的。", "py": "Wǒ xǐ huan chī tián de.", "kp": "워 시 환 츠ᵛ 티엔 떠.", "ko": "나는 단 것을 좋아해."}, {"l": 3, "s": "심화", "zh": "我喜欢吃辣的。", "py": "Wǒ xǐ huan chī là de.", "kp": "워 시 환 츠ᵛ 라 떠.", "ko": "나는 매운 것을 좋아해."}, {"l": 3, "s": "심화", "zh": "我喜欢吃酸的。", "py": "Wǒ xǐ huan chī suān de.", "kp": "워 시 환 츠ᵛ 쏸 떠.", "ko": "나는 신 것을 좋아해."}, {"l": 3, "s": "심화", "zh": "我不喜欢吃咸的。", "py": "Wǒ bù xǐ huan chī xián de.", "kp": "워 뿌 시 환 츠ᵛ 시엔 떠.", "ko": "나는 짠 것을 좋아하지 않아."}, {"l": 3, "s": "심화", "zh": "我不喜欢吃苦的。", "py": "Wǒ bù xǐ huan chī kǔ de.", "kp": "워 뿌 시 환 츠ᵛ 쿠 떠.", "ko": "나는 쓴 것을 좋아하지 않아."}, {"l": 3, "s": "심화", "zh": "我不喜欢吃油腻的。", "py": "Wǒ bù xǐ huan chī yóu nì de.", "kp": "워 뿌 시 환 츠ᵛ 여우 니 떠.", "ko": "나는 기름진 것을 좋아하지 않아."}, {"l": 3, "s": "단어", "zh": "酸，甜，苦，辣", "py": "Suān, tián, kǔ, là", "kp": "쏸, 티엔, 쿠, 라", "ko": "시다, 달다, 쓰다, 맵다"}, {"l": 4, "s": "본문", "zh": "妈，明天天气怎么样？", "py": "Mā, míng tiān tiān qì zěn me yàng?", "kp": "마, 밍 티엔 티엔 치 쩐 머 양?", "ko": "엄마, 내일 날씨 어때요?"}, {"l": 4, "s": "본문", "zh": "明天？明天有什么事儿吗？", "py": "Míng tiān? Míng tiān yǒu shén me shìr ma?", "kp": "밍 티엔? 밍 티엔 여우 선ᵛ 머 설ᵛ 마?", "ko": "내일? 내일 무슨 일 있니?"}, {"l": 4, "s": "본문", "zh": "我明天去春游。", "py": "Wǒ míng tiān qù chūn yóu.", "kp": "워 밍 티엔 취 춘ᵛ 여우.", "ko": "저 내일 봄 소풍 가요."}, {"l": 4, "s": "본문", "zh": "啊，你别担心。", "py": "A, nǐ bié dān xīn.", "kp": "아, 니 삐에 딴 신.", "ko": "아, 걱정하지 마."}, {"l": 4, "s": "본문", "zh": "天气预报说，明天晴天。", "py": "Tiān qì yù bào shuō, míng tiān qíng tiān.", "kp": "티엔 치 위 빠오 수ᵛ어, 밍 티엔 칭 티엔.", "ko": "일기예보에서 내일 맑대."}, {"l": 4, "s": "본문", "zh": "太好了！", "py": "Tài hǎo le!", "kp": "타이 하오 러!", "ko": "정말 잘됐다!"}, {"l": 4, "s": "해설", "zh": "今天天气怎么样？", "py": "Jīn tiān tiān qì zěn me yàng?", "kp": "진 티엔 티엔 치 쩐 머 양?", "ko": "오늘 날씨가 어떠니?"}, {"l": 4, "s": "해설", "zh": "今天很冷。", "py": "Jīn tiān hěn lěng.", "kp": "진 티엔 헌 렁.", "ko": "오늘은 추워."}, {"l": 4, "s": "해설", "zh": "今天很热。", "py": "Jīn tiān hěn rè.", "kp": "진 티엔 헌 러ᵛ.", "ko": "오늘은 더워."}, {"l": 4, "s": "해설", "zh": "今天很凉快。", "py": "Jīn tiān hěn liáng kuài.", "kp": "진 티엔 헌 량 콰이.", "ko": "오늘은 선선해."}, {"l": 4, "s": "해설", "zh": "今天很暖和。", "py": "Jīn tiān hěn nuǎn huo.", "kp": "진 티엔 헌 놘 후어.", "ko": "오늘은 따뜻해."}, {"l": 4, "s": "해설", "zh": "别迟到。", "py": "Bié chí dào.", "kp": "삐에 츠ᵛ 따오.", "ko": "지각하지 마라."}, {"l": 4, "s": "해설", "zh": "别难过。", "py": "Bié nán guò.", "kp": "삐에 난 꾸어.", "ko": "괴로워하지 마라."}, {"l": 4, "s": "해설", "zh": "别哭。", "py": "Bié kū.", "kp": "삐에 쿠.", "ko": "울지 마라."}, {"l": 4, "s": "해설", "zh": "不要迟到。", "py": "Bú yào chí dào.", "kp": "뿌 야오 츠ᵛ 따오.", "ko": "지각하지 마라."}, {"l": 4, "s": "심화", "zh": "明天阴天。", "py": "Míng tiān yīn tiān.", "kp": "밍 티엔 인 티엔.", "ko": "내일은 흐린 날씨야."}, {"l": 4, "s": "심화", "zh": "明天下雪。", "py": "Míng tiān xià xuě.", "kp": "밍 티엔 샤 쉬에.", "ko": "내일은 눈이 내려."}, {"l": 4, "s": "심화", "zh": "明天有雾。", "py": "Míng tiān yǒu wù.", "kp": "밍 티엔 여우 우.", "ko": "내일은 안개가 껴."}, {"l": 4, "s": "심화", "zh": "明天刮风。", "py": "Míng tiān guā fēng.", "kp": "밍 티엔 꽈 펑ᵒ.", "ko": "내일은 바람이 불어."}, {"l": 4, "s": "심화", "zh": "明天下雨。", "py": "Míng tiān xià yǔ.", "kp": "밍 티엔 샤 위.", "ko": "내일은 비가 와."}, {"l": 4, "s": "심화", "zh": "春天很暖和。", "py": "Chūn tiān hěn nuǎn huo.", "kp": "춘ᵛ 티엔 헌 놘 후어.", "ko": "봄은 따뜻하다."}, {"l": 4, "s": "심화", "zh": "夏天很热。", "py": "Xià tiān hěn rè.", "kp": "샤 티엔 헌 러ᵛ.", "ko": "여름은 덥다."}, {"l": 4, "s": "심화", "zh": "秋天很凉快。", "py": "Qiū tiān hěn liáng kuài.", "kp": "치우 티엔 헌 량 콰이.", "ko": "가을은 선선하다."}, {"l": 4, "s": "심화", "zh": "冬天很冷。", "py": "Dōng tiān hěn lěng.", "kp": "뚱 티엔 헌 렁.", "ko": "겨울은 춥다."}, {"l": 5, "s": "본문", "zh": "阿龙，下个星期五我有英语考试，请你帮我一下。", "py": "Ā lóng, xià ge xīng qī wǔ wǒ yǒu Yīng yǔ kǎo shì, qǐng nǐ bāng wǒ yí xià.", "kp": "아 룽, 샤 꺼 싱 치 우 워 여우 잉 위 카오 스ᵛ, 칭 니 빵 워 이 샤.", "ko": "아룽, 다음 주 금요일에 영어 시험이 있어. 나 좀 도와줘."}, {"l": 5, "s": "본문", "zh": "没问题，来我家一起学习吧。", "py": "Méi wèn tí, lái wǒ jiā yì qǐ xué xí ba.", "kp": "메이 원 티, 라이 워 쟈 이 치 쉬에 시 빠.", "ko": "문제없어, 우리 집에 와서 같이 공부하자."}, {"l": 5, "s": "본문", "zh": "谢谢，明天我请你吃饭。", "py": "Xiè xie, míng tiān wǒ qǐng nǐ chī fàn.", "kp": "시에 시에, 밍 티엔 워 칭 니 츠ᵛ 판ᵒ.", "ko": "고마워, 내일 내가 밥 살게."}, {"l": 5, "s": "본문", "zh": "我们是朋友嘛，不用客气。", "py": "Wǒ men shì péng you ma, bú yòng kè qi.", "kp": "워 먼 스ᵛ 펑 여우 마, 뿌 용 커 치.", "ko": "우린 친구잖아, 예의 차릴 필요 없어."}, {"l": 5, "s": "해설", "zh": "金老师马上来，请稍等。", "py": "Jīn lǎo shī mǎ shàng lái, qǐng shāo děng.", "kp": "진 라오 스ᵛ 마 상ᵛ 라이, 칭 사ᵛ오 떵.", "ko": "김 선생님은 곧 오실 겁니다, 잠시만 기다리세요."}, {"l": 5, "s": "해설", "zh": "欢迎欢迎，请进。", "py": "Huān yíng huān yíng, qǐng jìn.", "kp": "환 잉 환 잉, 칭 진.", "ko": "환영합니다, 어서 들어오세요."}, {"l": 5, "s": "해설", "zh": "请问，银行在哪儿？", "py": "Qǐng wèn, yín háng zài nǎr?", "kp": "칭 원, 인 항 짜이 날ᵛ?", "ko": "실례합니다만, 은행이 어디에 있지요?"}, {"l": 5, "s": "해설", "zh": "请喝茶。", "py": "Qǐng hē chá.", "kp": "칭 허 차ᵛ.", "ko": "차 드세요."}, {"l": 5, "s": "해설", "zh": "请坐。", "py": "Qǐng zuò.", "kp": "칭 쭈어.", "ko": "앉으세요."}, {"l": 5, "s": "해설", "zh": "请你帮我一下儿。", "py": "Qǐng nǐ bāng wǒ yí xiàr.", "kp": "칭 니 빵 워 이 샬ᵛ.", "ko": "저 좀 도와주세요."}, {"l": 5, "s": "해설", "zh": "你念一下儿。", "py": "Nǐ niàn yí xiàr.", "kp": "니 니엔 이 샬ᵛ.", "ko": "한번 읽어 봐."}, {"l": 5, "s": "해설", "zh": "咱们休息一下儿。", "py": "Zán men xiū xi yí xiàr.", "kp": "짠 먼 시우 시 이 샬ᵛ.", "ko": "우리 좀 쉬자."}, {"l": 5, "s": "해설", "zh": "请问一下儿。", "py": "Qǐng wèn yí xiàr.", "kp": "칭 원 이 샬ᵛ.", "ko": "뭐 좀 물어볼게요."}, {"l": 5, "s": "심화", "zh": "请你再说一遍。", "py": "Qǐng nǐ zài shuō yí biàn.", "kp": "칭 니 짜이 수ᵛ어 이 삐엔.", "ko": "다시 한 번 말해 줘."}, {"l": 5, "s": "심화", "zh": "请你吃饭。", "py": "Qǐng nǐ chī fàn.", "kp": "칭 니 츠ᵛ 판ᵒ.", "ko": "내가 밥 살게."}, {"l": 5, "s": "심화", "zh": "请你来我家玩儿。", "py": "Qǐng nǐ lái wǒ jiā wánr.", "kp": "칭 니 라이 워 쟈 왈ᵛ.", "ko": "우리 집에 와서 놀아."}, {"l": 5, "s": "심화", "zh": "请多吃点儿。", "py": "Qǐng duō chī diǎnr.", "kp": "칭 뚜어 츠ᵛ 띠알ᵛ.", "ko": "많이 드세요."}, {"l": 5, "s": "심화", "zh": "请你说慢一点儿。", "py": "Qǐng nǐ shuō màn yì diǎnr.", "kp": "칭 니 수ᵛ어 만 이 띠알ᵛ.", "ko": "좀 천천히 말해 주세요."}, {"l": 5, "s": "심화", "zh": "还有时间，不用着急。", "py": "Hái yǒu shí jiān, bú yòng zháo jí.", "kp": "하이 여우 스ᵛ 지엔, 뿌 용 자ᵛ오 지.", "ko": "아직 시간이 있으니 서두를 필요 없어."}, {"l": 5, "s": "심화", "zh": "学校很近，不用坐车。", "py": "Xué xiào hěn jìn, bú yòng zuò chē.", "kp": "쉬에 샤오 헌 진, 뿌 용 쭈어 처ᵛ.", "ko": "학교가 가까우니 차를 탈 필요가 없어."}, {"l": 6, "s": "본문", "zh": "星期天，你想去明洞，还是去仁寺洞？", "py": "Xīng qī tiān, nǐ xiǎng qù Míng dòng, hái shi qù Rén sì dòng?", "kp": "싱 치 티엔, 니 샹 취 밍 뚱, 하이 스ᵛ 취 런ᵛ 쓰 뚱?", "ko": "일요일에 명동에 가고 싶어 아니면 인사동에 가고 싶어?"}, {"l": 6, "s": "본문", "zh": "听说，仁寺洞有很多好看的、好吃的、好玩儿的。", "py": "Tīng shuō, Rén sì dòng yǒu hěn duō hǎo kàn de, hǎo chī de, hǎo wánr de.", "kp": "팅 수ᵛ어, 런ᵛ 쓰 뚱 여우 헌 뚜어 하오 칸 떠, 하오 츠ᵛ 떠, 하오 왈ᵛ 떠.", "ko": "듣자 하니 인사동에 볼거리, 먹거리, 놀거리가 많대."}, {"l": 6, "s": "본문", "zh": "我们去仁寺洞吧。", "py": "Wǒ men qù Rén sì dòng ba.", "kp": "워 먼 취 런ᵛ 쓰 뚱 빠.", "ko": "우리 인사동에 가자."}, {"l": 6, "s": "본문", "zh": "星期天我们什么时候见面？", "py": "Xīng qī tiān wǒ men shén me shí hou jiàn miàn?", "kp": "싱 치 티엔 워 먼 선ᵛ 머 스ᵛ 허우 지엔 미엔?", "ko": "일요일에 우리 언제 만나?"}, {"l": 6, "s": "본문", "zh": "十一点，好不好？", "py": "Shí yī diǎn, hǎo bu hǎo?", "kp": "스ᵛ 이 띠엔, 하오 뿌 하오?", "ko": "11시 어때?"}, {"l": 6, "s": "본문", "zh": "好，就这么定吧。", "py": "Hǎo, jiù zhè me dìng ba.", "kp": "하오, 지우 저ᵛ 머 띵 빠.", "ko": "좋아, 그렇게 정하자."}, {"l": 6, "s": "해설", "zh": "去明洞，还是去仁寺洞？", "py": "Qù Míng dòng, hái shi qù Rén sì dòng?", "kp": "취 밍 뚱, 하이 스ᵛ 취 런ᵛ 쓰 뚱?", "ko": "명동에 가니 아니면 인사동에 가니?"}, {"l": 6, "s": "해설", "zh": "去明洞。", "py": "Qù Míng dòng.", "kp": "취 밍 뚱.", "ko": "명동 갈래."}, {"l": 6, "s": "해설", "zh": "喝咖啡，还是喝茶？", "py": "Hē kā fēi, hái shi hē chá?", "kp": "허 카 페ᵒ이, 하이 스ᵛ 허 차ᵛ?", "ko": "커피 마실래 아니면 차 마실래?"}, {"l": 6, "s": "해설", "zh": "喝茶吧。", "py": "Hē chá ba.", "kp": "허 차ᵛ 빠.", "ko": "차 마실래."}, {"l": 6, "s": "해설", "zh": "你什么时候睡觉？", "py": "Nǐ shén me shí hou shuì jiào?", "kp": "니 선ᵛ 머 스ᵛ 허우 수ᵛ에이 쟈오?", "ko": "너 언제 자니?"}, {"l": 6, "s": "해설", "zh": "我十点半睡觉。", "py": "Wǒ shí diǎn bàn shuì jiào.", "kp": "워 스ᵛ 띠엔 빤 수ᵛ에이 쟈오.", "ko": "저는 10시 반에 자요."}, {"l": 6, "s": "심화", "zh": "你吃米饭，还是吃面条，还是吃方便面？", "py": "Nǐ chī mǐ fàn, hái shi chī miàn tiáo, hái shi chī fāng biàn miàn?", "kp": "니 츠ᵛ 미 판ᵒ, 하이 스ᵛ 츠ᵛ 미엔 탸오, 하이 스ᵛ 츠ᵛ 팡ᵒ 삐엔 미엔?", "ko": "밥 먹을래, 국수 먹을래 아니면 라면 먹을래?"}, {"l": 6, "s": "심화", "zh": "我吃面条。", "py": "Wǒ chī miàn tiáo.", "kp": "워 츠ᵛ 미엔 탸오.", "ko": "국수 먹을래."}, {"l": 6, "s": "심화", "zh": "听说，明天下雨。", "py": "Tīng shuō, míng tiān xià yǔ.", "kp": "팅 수ᵛ어, 밍 티엔 샤 위.", "ko": "듣자 하니, 내일 비가 온다더라."}, {"l": 6, "s": "심화", "zh": "听说，下个星期阿龙出院。", "py": "Tīng shuō, xià ge xīng qī Ā lóng chū yuàn.", "kp": "팅 수ᵛ어, 샤 꺼 싱 치 아 룽 추ᵛ 위엔.", "ko": "듣자 하니, 다음 주에 아룽이 퇴원한대."}, {"l": 6, "s": "단어", "zh": "坐公共汽车", "py": "Zuò gōng gòng qì chē", "kp": "쭈어 꿍 꿍 치 처ᵛ", "ko": "버스를 타다"}, {"l": 6, "s": "단어", "zh": "骑自行车", "py": "Qí zì xíng chē", "kp": "치 쯔 싱 처ᵛ", "ko": "자전거를 타다"}, {"l": 6, "s": "단어", "zh": "走路", "py": "Zǒu lù", "kp": "쩌우 루", "ko": "길을 걷다"}, {"l": 6, "s": "단어", "zh": "去美术馆", "py": "Qù měi shù guǎn", "kp": "취 메이 수ᵛ 꽌", "ko": "미술관에 가다"}, {"l": 6, "s": "단어", "zh": "去动物园", "py": "Qù dòng wù yuán", "kp": "취 뚱 우 위엔", "ko": "동물원에 가다"}, {"l": 6, "s": "단어", "zh": "去听音乐会", "py": "Qù tīng yīn yuè huì", "kp": "취 팅 인 위에 후에이", "ko": "음악회에 가다"}, {"l": 6, "s": "단어", "zh": "回国", "py": "Huí guó", "kp": "후에이 꾸어", "ko": "귀국하다"}, {"l": 6, "s": "단어", "zh": "开始上课", "py": "Kāi shǐ shàng kè", "kp": "카이 스ᵛ 상ᵛ 커", "ko": "수업을 시작하다"}, {"l": 7, "s": "본문", "zh": "请问，地铁站怎么走？", "py": "Qǐng wèn, dì tiě zhàn zěn me zǒu?", "kp": "칭 원, 띠 티에 잔ᵛ 쩐 머 쩌우?", "ko": "실례합니다만, 지하철역은 어떻게 가죠?"}, {"l": 7, "s": "본문", "zh": "先往右拐，然后一直走。", "py": "Xiān wǎng yòu guǎi, rán hòu yì zhí zǒu.", "kp": "시엔 왕 여우 꽈이, 란ᵛ 허우 이 즈ᵛ 쩌우.", "ko": "먼저 오른쪽으로 돈 다음, 쭉 가세요."}, {"l": 7, "s": "본문", "zh": "离这儿远不远？", "py": "Lí zhèr yuǎn bu yuǎn?", "kp": "리 절ᵛ 위엔 뿌 위엔?", "ko": "여기서 멀어요?"}, {"l": 7, "s": "본문", "zh": "不远，五分钟就到。", "py": "Bù yuǎn, wǔ fēn zhōng jiù dào.", "kp": "뿌 위엔, 우 펀ᵒ 중ᵛ 지우 따오.", "ko": "멀지 않아요, 5분이면 도착해요."}, {"l": 7, "s": "본문", "zh": "谢谢。", "py": "Xiè xie.", "kp": "시에 시에.", "ko": "고맙습니다."}, {"l": 7, "s": "본문", "zh": "不客气。", "py": "Bú kè qi.", "kp": "뿌 커 치.", "ko": "천만에요."}, {"l": 7, "s": "해설", "zh": "地铁站怎么走？", "py": "Dì tiě zhàn zěn me zǒu?", "kp": "띠 티에 잔ᵛ 쩐 머 쩌우?", "ko": "지하철역은 어떻게 가나요?"}, {"l": 7, "s": "해설", "zh": "往前走。", "py": "Wǎng qián zǒu.", "kp": "왕 치엔 쩌우.", "ko": "앞쪽으로 가세요."}, {"l": 7, "s": "해설", "zh": "往北走。", "py": "Wǎng běi zǒu.", "kp": "왕 뻬이 쩌우.", "ko": "북쪽으로 가세요."}, {"l": 7, "s": "해설", "zh": "往左拐。", "py": "Wǎng zuǒ guǎi.", "kp": "왕 쭈어 꽈이.", "ko": "왼쪽으로 도세요."}, {"l": 7, "s": "해설", "zh": "往西拐。", "py": "Wǎng xī guǎi.", "kp": "왕 시 꽈이.", "ko": "서쪽으로 도세요."}, {"l": 7, "s": "해설", "zh": "离这儿不远。", "py": "Lí zhèr bù yuǎn.", "kp": "리 절ᵛ 뿌 위엔.", "ko": "여기서 멀지 않아요."}, {"l": 7, "s": "해설", "zh": "离北京近。", "py": "Lí Běi jīng jìn.", "kp": "리 뻬이 징 진.", "ko": "북경에서 가까워요."}, {"l": 7, "s": "해설", "zh": "学校离我家很近。", "py": "Xué xiào lí wǒ jiā hěn jìn.", "kp": "쉬에 샤오 리 워 쟈 헌 진.", "ko": "학교는 우리 집에서 가까워요."}, {"l": 7, "s": "심화", "zh": "请问，首尔医院在哪儿？", "py": "Qǐng wèn, Shǒu ěr yī yuàn zài nǎr?", "kp": "칭 원, 서ᵛ우 얼ᵛ 이 위엔 짜이 날ᵛ?", "ko": "말씀 좀 묻겠습니다, 서울병원이 어디에 있나요?"}, {"l": 7, "s": "심화", "zh": "在超市的对面。", "py": "Zài chāo shì de duì miàn.", "kp": "짜이 차ᵛ오 스ᵛ 떠 뚜에이 미엔.", "ko": "슈퍼마켓 맞은편에 있어요."}, {"l": 7, "s": "심화", "zh": "在十字路口往右拐。", "py": "Zài shí zì lù kǒu wǎng yòu guǎi.", "kp": "짜이 스ᵛ 쯔 루 커우 왕 여우 꽈이.", "ko": "사거리에서 오른쪽으로 도세요."}, {"l": 7, "s": "심화", "zh": "在补习班过马路就是。", "py": "Zài bǔ xí bān guò mǎ lù jiù shì.", "kp": "짜이 뿌 시 빤 꾸어 마 루 지우 스ᵛ.", "ko": "학원에서 길을 건너면 바로예요."}, {"l": 7, "s": "심화", "zh": "一直走，到邮局往左拐。", "py": "Yì zhí zǒu, dào yóu jú wǎng zuǒ guǎi.", "kp": "이 즈ᵛ 쩌우, 따오 여우 쥐 왕 쭈어 꽈이.", "ko": "곧장 가다가 우체국에서 왼쪽으로 도세요."}, {"l": 7, "s": "단어", "zh": "上，下，左，右", "py": "Shàng, xià, zuǒ, yòu", "kp": "상ᵛ, 샤, 쭈어, 여우", "ko": "위, 아래, 왼쪽, 오른쪽"}, {"l": 7, "s": "단어", "zh": "前，后，里，外", "py": "Qián, hòu, lǐ, wài", "kp": "치엔, 허우, 리, 와이", "ko": "앞, 뒤, 안쪽, 바깥쪽"}, {"l": 7, "s": "단어", "zh": "东，西，南，北", "py": "Dōng, xī, nán, běi", "kp": "뚱, 시, 난, 뻬이", "ko": "동, 서, 남, 북"}, {"l": 8, "s": "본문", "zh": "我可以进去吗？", "py": "Wǒ kě yǐ jìn qù ma?", "kp": "워 커 이 진 취 마?", "ko": "나 들어가도 돼?"}, {"l": 8, "s": "본문", "zh": "可以，快进来。", "py": "Kě yǐ, kuài jìn lái.", "kp": "커 이, 콰이 진 라이.", "ko": "응, 얼른 들어와."}, {"l": 8, "s": "본문", "zh": "你在做什么呢？", "py": "Nǐ zài zuò shén me ne?", "kp": "니 짜이 쭈어 선ᵛ 머 너?", "ko": "너 뭐 하고 있어?"}, {"l": 8, "s": "본문", "zh": "我在看中国动画片呢。", "py": "Wǒ zài kàn Zhōng guó dòng huà piàn ne.", "kp": "워 짜이 칸 중ᵛ 꾸어 뚱 화 피엔 너.", "ko": "나 중국 만화영화 보고 있어."}, {"l": 8, "s": "본문", "zh": "中国动画片？我也可以看吗？", "py": "Zhōng guó dòng huà piàn? Wǒ yě kě yǐ kàn ma?", "kp": "중ᵛ 꾸어 뚱 화 피엔? 워 예 커 이 칸 마?", "ko": "중국 만화영화? 나도 봐도 돼?"}, {"l": 8, "s": "본문", "zh": "当然可以，过来坐吧。", "py": "Dāng rán kě yǐ, guò lái zuò ba.", "kp": "땅 란ᵛ 커 이, 꾸어 라이 쭈어 빠.", "ko": "당연하지, 이리 와서 앉아."}, {"l": 8, "s": "해설", "zh": "妈妈，我可以出去玩儿吗？", "py": "Mā ma, wǒ kě yǐ chū qù wánr ma?", "kp": "마 마, 워 커 이 추ᵛ 취 왈ᵛ 마?", "ko": "엄마, 저 나가서 놀아도 돼요?"}, {"l": 8, "s": "해설", "zh": "不行，你还没做完作业呢！", "py": "Bù xíng, nǐ hái méi zuò wán zuò yè ne!", "kp": "뿌 싱, 니 하이 메이 쭈어 완 쭈어 예 너!", "ko": "안 돼, 너 숙제 아직 다 안 했잖아!"}, {"l": 8, "s": "해설", "zh": "这件衣服我可以试试吗？", "py": "Zhè jiàn yī fu wǒ kě yǐ shì shi ma?", "kp": "저ᵛ 지엔 이 푸ᵒ 워 커 이 스ᵛ 스ᵛ 마?", "ko": "이 옷 제가 입어 봐도 될까요?"}, {"l": 8, "s": "해설", "zh": "可以。", "py": "Kě yǐ.", "kp": "커 이.", "ko": "네."}, {"l": 8, "s": "해설", "zh": "行。", "py": "Xíng.", "kp": "싱.", "ko": "네."}, {"l": 8, "s": "해설", "zh": "爸爸正在看杂志呢。", "py": "Bà ba zhèng zài kàn zá zhì ne.", "kp": "빠 빠 정ᵛ 짜이 칸 짜 즈ᵛ 너.", "ko": "아버지는 지금 잡지를 보고 계셔."}, {"l": 8, "s": "해설", "zh": "他们正在打乒乓球。", "py": "Tā men zhèng zài dǎ pīng pāng qiú.", "kp": "타 먼 정ᵛ 짜이 따 핑 팡 치우.", "ko": "그들은 지금 탁구를 치고 있는 중이야."}, {"l": 8, "s": "해설", "zh": "美娜在听广播呢。", "py": "Měi nà zài tīng guǎng bō ne.", "kp": "메이 나 짜이 팅 꽝 뽀 너.", "ko": "미나는 지금 방송을 듣고 있는 중이야."}, {"l": 8, "s": "심화", "zh": "妈妈，我可不可以去游泳池？", "py": "Mā ma, wǒ kě bu kě yǐ qù yóu yǒng chí?", "kp": "마 마, 워 커 뿌 커 이 취 여우 용 츠ᵛ?", "ko": "엄마, 저 수영장에 가도 돼요?"}, {"l": 8, "s": "심화", "zh": "你可不可以借给我一本小说？", "py": "Nǐ kě bu kě yǐ jiè gěi wǒ yì běn xiǎo shuō?", "kp": "니 커 뿌 커 이 지에 께이 워 이 뻔 샤오 수ᵛ어?", "ko": "소설책 한 권 빌려줄 수 있니?"}, {"l": 8, "s": "심화", "zh": "当然可以。", "py": "Dāng rán kě yǐ.", "kp": "땅 란ᵛ 커 이.", "ko": "물론이지."}, {"l": 8, "s": "심화", "zh": "现在北京可不可以放鞭炮？", "py": "Xiàn zài Běi jīng kě bu kě yǐ fàng biān pào?", "kp": "시엔 짜이 뻬이 징 커 뿌 커 이 팡ᵒ 삐엔 파오?", "ko": "지금 베이징에서 폭죽놀이 해도 돼?"}, {"l": 8, "s": "심화", "zh": "现在不可以放。", "py": "Xiàn zài bù kě yǐ fàng.", "kp": "시엔 짜이 뿌 커 이 팡ᵒ.", "ko": "지금은 못 해."}, {"l": 9, "s": "본문", "zh": "这是你家的全家福吗？", "py": "Zhè shì nǐ jiā de quán jiā fú ma?", "kp": "저ᵛ 스ᵛ 니 쟈 떠 취엔 쟈 푸ᵒ 마?", "ko": "이거 너희 가족사진이니?"}, {"l": 9, "s": "본문", "zh": "是。我爸爸、妈妈和弟弟。", "py": "Shì. Wǒ bà ba, mā ma hé dì di.", "kp": "스ᵛ. 워 빠 빠, 마 마 허 띠 띠.", "ko": "응. 우리 아빠, 엄마 그리고 남동생이야."}, {"l": 9, "s": "본문", "zh": "你弟弟比你高！", "py": "Nǐ dì di bǐ nǐ gāo!", "kp": "니 띠 띠 삐 니 까오!", "ko": "네 동생이 너보다 키가 크구나!"}, {"l": 9, "s": "본문", "zh": "没错儿。", "py": "Méi cuòr.", "kp": "메이 추얼ᵛ.", "ko": "맞아."}, {"l": 9, "s": "본문", "zh": "他今年几年级？", "py": "Tā jīn nián jǐ nián jí?", "kp": "타 진 니엔 지 니엔 지?", "ko": "동생은 올해 몇 학년이야?"}, {"l": 9, "s": "본문", "zh": "他是小学六年级，比我小两岁。", "py": "Tā shì xiǎo xué liù nián jí, bǐ wǒ xiǎo liǎng suì.", "kp": "타 스ᵛ 샤오 쉬에 리우 니엔 지, 삐 워 샤오 량 쑤에이.", "ko": "초등학교 6학년이야, 나보다 두 살 어려."}, {"l": 9, "s": "해설", "zh": "他二十岁，我十九岁，他比我大。", "py": "Tā èr shí suì, wǒ shí jiǔ suì, tā bǐ wǒ dà.", "kp": "타 얼ᵛ 스ᵛ 쑤에이, 워 스ᵛ 지우 쑤에이, 타 삐 워 따.", "ko": "그는 20살이고 나는 19살이다, 그는 나보다 나이가 많다."}, {"l": 9, "s": "해설", "zh": "他比我矮。", "py": "Tā bǐ wǒ ǎi.", "kp": "타 삐 워 아이.", "ko": "그는 나보다 키가 작다."}, {"l": 9, "s": "해설", "zh": "今天比昨天冷。", "py": "Jīn tiān bǐ zuó tiān lěng.", "kp": "진 티엔 삐 쭈어 티엔 렁.", "ko": "오늘은 어제보다 춥다."}, {"l": 9, "s": "해설", "zh": "他比我大两岁。", "py": "Tā bǐ wǒ dà liǎng suì.", "kp": "타 삐 워 따 량 쑤에이.", "ko": "그는 나보다 두 살이 많다."}, {"l": 9, "s": "해설", "zh": "他比我高五公分。", "py": "Tā bǐ wǒ gāo wǔ gōng fēn.", "kp": "타 삐 워 까오 우 꿍 펀ᵒ.", "ko": "그는 나보다 5cm 더 크다."}, {"l": 9, "s": "해설", "zh": "今天比昨天低三度。", "py": "Jīn tiān bǐ zuó tiān dī sān dù.", "kp": "진 티엔 삐 쭈어 티엔 띠 싼 뚜.", "ko": "오늘은 어제보다 3도 낮다."}, {"l": 9, "s": "심화", "zh": "他比我高。", "py": "Tā bǐ wǒ gāo.", "kp": "타 삐 워 까오.", "ko": "그는 나보다 키가 크다."}, {"l": 9, "s": "심화", "zh": "我没有他高。", "py": "Wǒ méi yǒu tā gāo.", "kp": "워 메이 여우 타 까오.", "ko": "나는 그 사람만큼 크지 않다."}, {"l": 9, "s": "심화", "zh": "我比他矮。", "py": "Wǒ bǐ tā ǎi.", "kp": "워 삐 타 아이.", "ko": "나는 그보다 작다."}, {"l": 9, "s": "심화", "zh": "你比她大。", "py": "Nǐ bǐ tā dà.", "kp": "니 삐 타 따.", "ko": "너는 그녀보다 나이가 많다."}, {"l": 9, "s": "심화", "zh": "她没有你大。", "py": "Tā méi yǒu nǐ dà.", "kp": "타 메이 여우 니 따.", "ko": "그녀는 너만큼 나이가 많지 않다."}, {"l": 9, "s": "심화", "zh": "她比你小。", "py": "Tā bǐ nǐ xiǎo.", "kp": "타 삐 니 샤오.", "ko": "그녀는 너보다 어리다."}, {"l": 9, "s": "심화", "zh": "这个本子比那个本子贵。", "py": "Zhè ge běn zi bǐ nà ge běn zi guì.", "kp": "저ᵛ 꺼 뻔 쯔 삐 나 꺼 뻔 쯔 꾸에이.", "ko": "이 노트는 저 노트보다 비싸다."}, {"l": 9, "s": "심화", "zh": "那个本子没有这个本子贵。", "py": "Nà ge běn zi méi yǒu zhè ge běn zi guì.", "kp": "나 꺼 뻔 쯔 메이 여우 저ᵛ 꺼 뻔 쯔 꾸에이.", "ko": "저 노트는 이 노트만큼 비싸지 않다."}, {"l": 9, "s": "심화", "zh": "那个本子比这个本子便宜。", "py": "Nà ge běn zi bǐ zhè ge běn zi pián yi.", "kp": "나 꺼 뻔 쯔 삐 저ᵛ 꺼 뻔 쯔 피엔 이.", "ko": "저 노트는 이 노트보다 싸다."}, {"l": 10, "s": "본문", "zh": "你明天下午能不能来我家？", "py": "Nǐ míng tiān xià wǔ néng bu néng lái wǒ jiā?", "kp": "니 밍 티엔 샤 우 넝 뿌 넝 라이 워 쟈?", "ko": "너 내일 오후에 우리 집에 올 수 있어?"}, {"l": 10, "s": "본문", "zh": "为什么？", "py": "Wèi shén me?", "kp": "웨이 선ᵛ 머?", "ko": "왜?"}, {"l": 10, "s": "본문", "zh": "因为我想跟你一起学习英语。", "py": "Yīn wèi wǒ xiǎng gēn nǐ yì qǐ xué xí Yīng yǔ.", "kp": "인 웨이 워 샹 껀 니 이 치 쉬에 시 잉 위.", "ko": "너랑 같이 영어 공부하고 싶어서."}, {"l": 10, "s": "본문", "zh": "可是我从三点到五点去补习班。", "py": "Kě shì wǒ cóng sān diǎn dào wǔ diǎn qù bǔ xí bān.", "kp": "커 스ᵛ 워 충 싼 띠엔 따오 우 띠엔 취 뿌 시 빤.", "ko": "그런데 나 3시부터 5시까지 학원에 가."}, {"l": 10, "s": "본문", "zh": "下课以后来我家，怎么样？", "py": "Xià kè yǐ hòu lái wǒ jiā, zěn me yàng?", "kp": "샤 커 이 허우 라이 워 쟈, 쩐 머 양?", "ko": "수업 끝나고 우리 집에 오는 거 어때?"}, {"l": 10, "s": "본문", "zh": "好哇。", "py": "Hǎo wa.", "kp": "하오 와.", "ko": "좋아."}, {"l": 10, "s": "본문", "zh": "一言为定！", "py": "Yì yán wéi dìng!", "kp": "이 이엔 웨이 띵!", "ko": "약속한 거야!"}, {"l": 11, "s": "본문", "zh": "你有空儿的时候干什么？", "py": "Nǐ yǒu kòngr de shí hou gàn shén me?", "kp": "니 여우 콜ᵛ 떠 스ᵛ 허우 깐 선ᵛ 머?", "ko": "너 시간 있을 때 뭐 해?"}, {"l": 11, "s": "본문", "zh": "有的时候上网，有的时候看书。", "py": "Yǒu de shí hou shàng wǎng, yǒu de shí hou kàn shū.", "kp": "여우 떠 스ᵛ 허우 상ᵛ 왕, 여우 떠 스ᵛ 허우 칸 수ᵛ.", "ko": "어떤 때는 인터넷을 하고, 어떤 때는 책을 봐."}, {"l": 11, "s": "본문", "zh": "一个星期上几次网？", "py": "Yí ge xīng qī shàng jǐ cì wǎng?", "kp": "이 꺼 싱 치 상ᵛ 지 츠 왕?", "ko": "일주일에 인터넷 몇 번 해?"}, {"l": 11, "s": "본문", "zh": "我只有星期六才能上网。", "py": "Wǒ zhǐ yǒu xīng qī liù cái néng shàng wǎng.", "kp": "워 즈ᵛ 여우 싱 치 리우 차이 넝 상ᵛ 왕.", "ko": "나는 토요일에만 인터넷을 할 수 있어."}, {"l": 11, "s": "본문", "zh": "平时我妈不让我上网。", "py": "Píng shí wǒ mā bú ràng wǒ shàng wǎng.", "kp": "핑 스ᵛ 워 마 뿌 랑ᵛ 워 상ᵛ 왕.", "ko": "평소에는 엄마가 인터넷을 못 하게 하셔."}, {"l": 11, "s": "본문", "zh": "她这么做都是为了你好。", "py": "Tā zhè me zuò dōu shì wèi le nǐ hǎo.", "kp": "타 저ᵛ 머 쭈어 떠우 스ᵛ 웨이 러 니 하오.", "ko": "엄마가 그러시는 건 다 너 잘되라고 하시는 거야."}, {"l": 11, "s": "본문", "zh": "我也知道。", "py": "Wǒ yě zhī dào.", "kp": "워 예 즈ᵛ 따오.", "ko": "나도 알아."}, {"l": 12, "s": "본문", "zh": "昨天你去了动物园，是吧？", "py": "Zuó tiān nǐ qù le dòng wù yuán, shì ba?", "kp": "쭈어 티엔 니 취 러 뚱 우 위엔, 스ᵛ 빠?", "ko": "어제 너 동물원에 갔었지?"}, {"l": 12, "s": "본문", "zh": "是。我看了很多动物。老虎、狮子、河马什么的。", "py": "Shì. Wǒ kàn le hěn duō dòng wù. Lǎo hǔ, shī zi, hé mǎ shén me de.", "kp": "스ᵛ. 워 칸 러 헌 뚜어 뚱 우. 라오 후, 스ᵛ 쯔, 허 마 선ᵛ 머 떠.", "ko": "응. 동물을 많이 봤어. 호랑이, 사자, 하마 같은 거."}, {"l": 12, "s": "본문", "zh": "好玩儿吗？", "py": "Hǎo wánr ma?", "kp": "하오 왈ᵛ 마?", "ko": "재미있었어?"}, {"l": 12, "s": "본문", "zh": "很好玩儿，我还拍了很多照片。", "py": "Hěn hǎo wánr, wǒ hái pāi le hěn duō zhào piàn.", "kp": "헌 하오 왈ᵛ, 워 하이 파이 러 헌 뚜어 자ᵛ오 피엔.", "ko": "정말 재미있었어. 사진도 많이 찍었어."}, {"l": 12, "s": "본문", "zh": "给我看看。", "py": "Gěi wǒ kàn kan.", "kp": "께이 워 칸 칸.", "ko": "나 좀 보여 줘."}, {"l": 12, "s": "본문", "zh": "好！爸，您等一下儿。", "py": "Hǎo! Bà, nín děng yí xiàr.", "kp": "하오! 빠, 닌 떵 이 샬ᵛ.", "ko": "네! 아빠, 잠깐만 기다리세요."}, {"l": 12, "s": "심화", "zh": "拍了很多照片。", "py": "Pāi le hěn duō zhào piàn.", "kp": "파이 러 헌 뚜어 자ᵛ오 피엔.", "ko": "사진을 많이 찍었다."}, {"l": 12, "s": "심화", "zh": "买了一件衣服。", "py": "Mǎi le yí jiàn yī fu.", "kp": "마이 러 이 지엔 이 푸ᵒ.", "ko": "옷 한 벌을 샀다."}, {"l": 12, "s": "심화", "zh": "看了中国电影。", "py": "Kàn le Zhōng guó diàn yǐng.", "kp": "칸 러 중ᵛ 꾸어 띠엔 잉.", "ko": "중국 영화를 봤다."}, {"l": 12, "s": "심화", "zh": "没有拍照片。", "py": "Méi yǒu pāi zhào piàn.", "kp": "메이 여우 파이 자ᵛ오 피엔.", "ko": "사진을 안 찍었다."}, {"l": 12, "s": "심화", "zh": "没有买衣服。", "py": "Méi yǒu mǎi yī fu.", "kp": "메이 여우 마이 이 푸ᵒ.", "ko": "옷을 안 샀다."}, {"l": 12, "s": "심화", "zh": "没有看中国电影。", "py": "Méi yǒu kàn Zhōng guó diàn yǐng.", "kp": "메이 여우 칸 중ᵛ 꾸어 띠엔 잉.", "ko": "중국 영화를 안 봤다."}, {"l": 12, "s": "심화", "zh": "你买了铅笔没有？", "py": "Nǐ mǎi le qiān bǐ méi yǒu?", "kp": "니 마이 러 치엔 삐 메이 여우?", "ko": "너 연필 샀니?"}, {"l": 12, "s": "심화", "zh": "你吃饭了没有？", "py": "Nǐ chī fàn le méi yǒu?", "kp": "니 츠ᵛ 판ᵒ 러 메이 여우?", "ko": "너 밥 먹었니?"}, {"l": 12, "s": "심화", "zh": "你看了哈利波特没有？", "py": "Nǐ kàn le Hā lì bō tè méi yǒu?", "kp": "니 칸 러 하 리 뽀 터 메이 여우?", "ko": "너 해리포터 봤니?"}]};
+const SECS = ["전체","본문","해설","심화","단어"];
+const MODES = [["입력","all"],["연습","hide"],["독립","rand"]];
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+let st = store.get("hz12-state",{l:1,s:"전체",m:"all",i:0});
+let marks = store.get("hz12-marks",{});
+let list = [], shown = false;
+
+const $ = id => document.getElementById(id);
+function keyOf(c){return c.l+"|"+c.zh}
+
+function buildRail(){
+  $("rail").innerHTML = DATA.lessons.map(l=>`<button type="button" data-l="${l.n}">${l.n}</button>`).join("");
+  $("rail").onclick = e=>{const b=e.target.closest("button");if(!b)return;st.l=+b.dataset.l;st.i=0;build()};
+  $("chips").innerHTML = SECS.map(s=>`<button type="button" data-s="${s}">${s}</button>`).join("");
+  $("chips").onclick = e=>{const b=e.target.closest("button");if(!b)return;st.s=b.dataset.s;st.i=0;build()};
+  $("modes").innerHTML = MODES.map(([n,v])=>`<button type="button" data-m="${v}">${n}</button>`).join("");
+  $("modes").onclick = e=>{const b=e.target.closest("button");if(!b)return;st.m=b.dataset.m;st.i=0;build()};
+}
+
+function build(){
+  const secsHere = new Set(DATA.cards.filter(c=>c.l===st.l).map(c=>c.s));
+  if(st.s!=="전체" && !secsHere.has(st.s)) st.s="전체";
+  list = DATA.cards.filter(c=>c.l===st.l && (st.s==="전체"||c.s===st.s));
+  if(st.m==="rand"){list=list.slice();for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]]}}
+  document.querySelectorAll("#rail button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.l===st.l));
+  document.querySelectorAll("#chips button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.s===st.s);b.hidden=b.dataset.s!=="전체"&&!secsHere.has(b.dataset.s)});
+  document.querySelectorAll("#modes button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===st.m));
+  const L = DATA.lessons.find(l=>l.n===st.l);
+  $("lzh").textContent = st.l+"과  "+L.zh; $("lko").textContent = L.ko;
+  const a=$("rail").querySelector(`[data-l="${st.l}"]`); if(a) a.scrollIntoView({block:"nearest",inline:"center"});
+  if(st.i>=list.length) st.i=0;
+  render();
+}
+
+function fmtKp(s){
+  return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))
+          .replace(/ᵛ/g,'<span class="m">ᵛ</span>').replace(/ᵒ/g,'<span class="m mf">ᵒ</span>');
+}
+
+function render(){
+  const c = list[st.i]; if(!c) return;
+  shown = st.m==="all";
+  $("tag").textContent = c.s; $("lnum").textContent = c.l+"과";
+  $("pos").textContent = (st.i+1)+" / "+list.length;
+  $("count").textContent = (st.i+1)+" / "+list.length;
+  $("ko").textContent = c.ko;
+  $("hz").textContent = c.zh; $("py").textContent = c.py; $("kp").innerHTML = fmtKp(c.kp);
+  $("ans").classList.toggle("covered",!shown);
+  $("bar").style.width = ((st.i+1)/list.length*100)+"%";
+  const m = marks[keyOf(c)]||[0,0,0];
+  [0,1,2].forEach(k=>$("c"+k).checked=!!m[k]);
+  const lc = DATA.cards.filter(x=>x.l===st.l), d = lc.filter(x=>(marks[keyOf(x)]||[])[2]).length;
+  $("done").textContent = st.l+"과 독립 완료 "+d+" / "+lc.length;
+  store.set("hz12-state",{l:st.l,s:st.s,m:st.m,i:st.i});
+}
+
+$("ans").onclick = ()=>{if(!shown){shown=true;$("ans").classList.remove("covered")}};
+[0,1,2].forEach(k=>$("c"+k).onchange=e=>{const c=list[st.i],key=keyOf(c);const m=marks[key]||[0,0,0];m[k]=e.target.checked?1:0;marks[key]=m;store.set("hz12-marks",marks);render()});
+function go(d){if(!list.length)return;st.i=(st.i+d+list.length)%list.length;stop();render()}
+$("prev").onclick=()=>go(-1); $("next").onclick=()=>go(1);
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
+let sx=null;$("card").addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
+$("card").addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)go(dx<0?1:-1);sx=null});
+
+/* speech */
+const synth = window.speechSynthesis;
+let voices=[];
+function loadVoices(){voices=synth?synth.getVoices():[]}
+if(synth){loadVoices();synth.onvoiceschanged=loadVoices}
+function pick(lang){return voices.find(v=>v.lang.replace("_","-").toLowerCase()===lang)||voices.find(v=>v.lang.toLowerCase().startsWith(lang.slice(0,2)))}
+function stop(){try{synth&&synth.cancel()}catch(e){}}
+function say(text,lang,rate){
+  if(!synth){$("warn").hidden=false;return}
+  stop();const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=rate;const v=pick(lang.toLowerCase());if(v)u.voice=v;synth.speak(u);
+}
+$("bZh").onclick=()=>say(list[st.i].zh,"zh-CN",0.9);
+$("bSlow").onclick=()=>say(list[st.i].zh,"zh-CN",0.55);
+$("bKo").onclick=()=>say(list[st.i].ko,"ko-KR",1);
+if(!synth || /KAKAOTALK|NAVER|BAND|Instagram|FBAN|FBAV/i.test(navigator.userAgent)) $("warn").hidden=false;
+
+buildRail(); build();
+</script>
+</body>
+</html>
